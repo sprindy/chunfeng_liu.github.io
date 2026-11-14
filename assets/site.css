@@ -27,9 +27,9 @@ h3 { font: 400 clamp(1.8rem, 3vw, 2.7rem)/1.06 var(--serif); }
 .brand { font: 400 1.8rem/1 var(--serif); text-decoration: none; white-space: nowrap; justify-self: start; }
 .brand span { color: var(--aqua); }
 nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .45rem clamp(.85rem, 2.2vw, 1.7rem); }
-nav a, .contact { text-decoration: none; font-weight: 600; font-size: .85rem; }
-nav a:hover, .contact:hover { text-decoration: underline; }
-.contact { color: var(--aqua); justify-self: end; white-space: nowrap; }
+nav a, .contact a { text-decoration: none; font-weight: 600; font-size: .85rem; }
+nav a:hover, .contact a:hover { text-decoration: underline; }
+.contact { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .25rem 1rem; color: var(--aqua); justify-self: end; }
 .hero {
   display: grid;
   align-items: center;
@@ -110,20 +110,24 @@ footer { background: var(--navy); color: #f7faf5; padding-block: 1.8rem; }
   nav a:hover, nav a:focus-visible { color: var(--aqua); background: #bfe6de16; }
 }
 @media (max-width: 1199px), (max-height: 419px) {
-  html { scroll-padding-top: 82px; }
+  html { scroll-padding-top: 100px; }
   .site-header { position: sticky; top: 0; z-index: 4; }
 }
 @media (max-width: 900px) {
   .wrap { width: calc(100% - 56px); }
-  .contact { display: none; }
-  .header-inner { grid-template-columns: auto 1fr; }
+  .header-inner { grid-template-columns: auto 1fr; gap: .5rem 1rem; padding-block: .65rem; }
+  .header-inner nav { grid-row: 2; grid-column: 1 / -1; }
+  .header-inner .contact { grid-row: 1; grid-column: 2; }
   nav { justify-content: flex-end; }
   .hero { background-size: auto, 82vw auto; background-position: center, right 54%; }
 }
 @media (max-width: 650px) {
   .wrap { width: calc(100% - 36px); }
-  .header-inner { grid-template-columns: 1fr; gap: .55rem; padding-block: .75rem; }
-  html { scroll-padding-top: 94px; }
+  .header-inner { gap: .5rem; }
+  .contact { gap: .25rem .65rem; }
+  .contact a { font-size: .78rem; }
+  .brand { font-size: clamp(1.15rem, 5.2vw, 1.8rem); }
+  html { scroll-padding-top: 105px; }
   nav { justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; padding: .2rem; gap: .35rem .8rem; }
   nav a { flex-shrink: 0; }
   nav a { font-size: .8rem; }
