@@ -1,0 +1,16 @@
+name = "chunfeng-portfolio-analytics"
+main = "worker.mjs"
+compatibility_date = "2026-11-01"
+
+[vars]
+SITE_ORIGIN = "https://sprindy.github.io"
+SITE_BASE = "/chunfeng_liu.github.io"
+STORE_FULL_IP = "false"
+
+[triggers]
+crons = ["17 3 * * *"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "portfolio-analytics"
+database_id = "replace-with-your-d1-id"

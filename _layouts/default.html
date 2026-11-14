@@ -31,5 +31,17 @@
     <span>Chunfeng Liu · Singapore</span>
     <div><a href="https://www.linkedin.com/in/caleb-liu-6a361011a/">LinkedIn ↗</a><a href="https://github.com/sprindy">GitHub ↗</a><a href="https://www.instagram.com/sprindy.liu/">Instagram ↗</a></div>
   </div></footer>
+  {% if site.visitor_analytics_url and site.visitor_analytics_url != '' and page.url != '/404.html' %}
+  <div class="wrap analytics-preferences" data-visitor-analytics="{{ site.visitor_analytics_url | escape }}" data-page-path="{{ page.url | relative_url | escape }}">
+    <details>
+      <summary>Visitor analytics preferences</summary>
+      <p>Optional analytics record the pages you open, time spent with each page visible, a random browser identifier, and network information including your IP address or its prefix. The site owner uses this information to understand traffic and retains it for 90 days. You can turn analytics off at any time.</p>
+      <p data-analytics-status role="status">Analytics are off until you allow them.</p>
+      <button type="button" data-analytics-choice="allow">Allow analytics</button>
+      <button type="button" data-analytics-choice="decline">Turn analytics off</button>
+    </details>
+  </div>
+  <script src="{{ '/assets/visitor-analytics.js' | relative_url }}?v={{ site.github.build_revision | default: '1' | escape }}" defer></script>
+  {% endif %}
 </body>
 </html>

@@ -13,3 +13,18 @@ The site uses Jekyll and deploys from the root of `main` through GitHub Pages. T
 The initial blog posts migrated from the earlier site are in `_drafts/`. Draft source is visible in this public repository.
 
 For a local preview, run `bundle install` and `bundle exec jekyll serve`, then use the printed project URL.
+
+## Private visitor analytics
+
+The public site stays on GitHub Pages. The collector, private dashboard and D1 database run in your Cloudflare account. The public site starts sending analytics only after a visitor allows it and a deployed collector URL is configured.
+
+1. From `_analytics/`, run `npx wrangler login` in your terminal and sign in to your Cloudflare account.
+2. Run `npx wrangler d1 create portfolio-analytics`. In your local copy of `wrangler.toml`, replace the example `database_id` with the returned ID.
+3. Run `npx wrangler d1 migrations apply portfolio-analytics --remote`, then `npx wrangler deploy`.
+4. Set `ADMIN_USERNAME`, `ADMIN_PASSWORD`, and `SESSION_SECRET` with `npx wrangler secret put NAME`, once per secret. Choose a password of at least 12 characters and an independent random session secret of at least 32 characters. Enter secrets directly in Wrangler or the Cloudflare dashboard. Changing the password or session secret invalidates active sign-ins.
+5. Open the Worker URL and sign in with the username and password you chose. Set `visitor_analytics_url` in the site's `_config.yml` to the HTTPS Worker URL and publish the change.
+6. On the portfolio, open **Visitor analytics preferences** below the footer and allow analytics. Open two pages, then check the private dashboard. Turn it off again if you prefer to exclude your browser.
+
+Reports include 7-, 30-, and 90-day ranges, page views and visible time per page, repeat visits by browser, and visits grouped by the network that handled them. Browsers can share networks or clear their saved IDs. Company attribution reflects the network owner, which can instead be an ISP or VPN. Collection starts when analytics are enabled. There is no historical backfill.
+
+The dashboard displays IP prefixes by default. To record full IP addresses for new page views, set `STORE_FULL_IP = "true"` in the Worker configuration and redeploy. The Worker deletes analytics rows older than 90 days on a daily schedule. Keep dashboard credentials and visitor data out of Git.

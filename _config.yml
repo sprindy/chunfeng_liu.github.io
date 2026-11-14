@@ -19,4 +19,7 @@ defaults:
       type: posts
     values:
       layout: article
-exclude: [README.md, AGENTS.md, Gemfile, Gemfile.lock, vendor]
+exclude: [README.md, AGENTS.md, Gemfile, Gemfile.lock, vendor, _analytics]
+
+# Set to the deployed Worker URL to enable the analytics preferences on the site.
+visitor_analytics_url: ''
