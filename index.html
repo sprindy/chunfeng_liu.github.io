@@ -1,0 +1,92 @@
+---
+layout: default
+---
+<section class="hero" aria-labelledby="name">
+  <div class="wrap hero-inner">
+    <p class="eyebrow">Singapore · Nanyang MBA candidate</p>
+    <h1 id="name">Chunfeng Liu</h1>
+    <p class="alias">Caleb, previously Sprindy</p>
+    <p class="hero-summary">Engineering leadership, AI infrastructure research, and product strategy.</p>
+    <div class="actions">
+      <a class="button" href="#work">Explore my work ↓</a>
+      <a class="hero-link" href="https://www.linkedin.com/in/caleb-liu-6a361011a/">Connect on LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section split" id="about">
+  <h2>About</h2>
+  <div>
+    <p class="intro">I’m a technology leader and Nanyang MBA candidate with 12+ years in engineering, including 3.5 years leading teams, and a year of independent AI infrastructure research.</p>
+    <p>At TDK-InvenSense, I led work across engineering, QA, and customer teams in three regions to deliver sensor platforms for global smartphone and wearable programs. My research follows the AI stack from chips and data centers to models and applications. I’m interested in how technical constraints shape product strategy and commercialization.</p>
+    <dl class="metrics"><div><dt>12+ years</dt><dd>Engineering</dd></div><div><dt>3.5 years</dt><dd>Team leadership</dd></div><div><dt>4 awards</dt><dd>TDK Sensing Excellence</dd></div></dl>
+  </div>
+</section>
+
+<section class="band" id="skills"><div class="wrap section split">
+  <h2>Skills</h2>
+  <div class="skills-grid">
+    <article><h3>AI strategy &amp; business</h3><p>AI use-case evaluation, technology assessment, product strategy, market and competitive analysis, and financial analysis.</p></article>
+    <article><h3>Technical leadership</h3><p>Cross-functional delivery, technical roadmaps, customer engagement, root-cause analysis, and mentoring.</p></article>
+    <article><h3>Software &amp; systems</h3><p>C/C++, Python, Linux, Android, embedded systems, Qualcomm and MediaTek platforms, sensors, CI/CD, and Git.</p></article>
+  </div>
+</div></section>
+
+<section class="wrap section split" id="work">
+  <h2>Work</h2>
+  <div class="work-list">
+    {% assign case_studies = site.work | sort: 'order' %}
+    <article>
+      <p class="eyebrow">Jan 2018 – Jun 2026</p>
+      <h3>TDK-InvenSense</h3><p class="role">System Software Manager</p>
+      <p>Led sensor platform delivery across three regions. A modular Qualcomm SEE framework cut SKU onboarding time by 50%. CI and diagnostic routines reduced integration defects and debugging cycles by about 30%. Secured Qualcomm Tier 1 certification for three variants and Tier 2 certification for more than 20.</p>
+      <ul class="case-links">{% for study in case_studies %}{% if study.employer == 'TDK-InvenSense' %}<li><a href="{{ study.url | relative_url }}">{{ study.title | escape }} ↗</a></li>{% endif %}{% endfor %}</ul>
+    </article>
+    <article>
+      <p class="eyebrow">Jul 2015 – Dec 2017</p>
+      <h3>HTC</h3><p class="role">Senior Software Engineer</p>
+      <p>Developed sensing and low-power firmware for HTC VIVE VR on STM32 and FreeRTOS, and built diagnostics for Qualcomm and MediaTek smartphones.</p>
+      {% assign htc_study = case_studies | where: 'employer', 'HTC' | first %}
+      <ul class="case-links"><li><a href="{{ htc_study.url | relative_url }}">{{ htc_study.title | escape }} ↗</a></li></ul>
+    </article>
+    <article>
+      <p class="eyebrow">Mar 2014 – May 2015</p>
+      <h3>ArcherMind Technology</h3><p class="role">Software Engineer</p>
+      <p>Delivered five or more Android integrations for Intel automotive systems across telephony, audio, storage, and boot.</p>
+    </article>
+    <article>
+      <p class="eyebrow">Jun 2011 – Aug 2013</p>
+      <h3>Jiangsu Radio Factory</h3><p class="role">Embedded Software Engineer</p>
+      <p>Developed embedded drivers and C++ instrumentation applications on TI OMAP3530 and Windows CE.</p>
+    </article>
+  </div>
+</section>
+
+<section class="blog-band" id="blog"><div class="wrap section split">
+  <h2>Blog</h2>
+  <ul class="series">
+    {% for series in site.data.series %}
+      {% assign posts = site.posts | where: 'series', series.slug %}
+      <li>{% if posts.size > 0 %}
+        {% assign series_path = '/blog/' | append: series.slug | append: '/' %}
+        <a href="{{ series_path | relative_url }}">{{ series.name | escape }} <span aria-hidden="true">↗</span></a>
+      {% else %}{{ series.name | escape }}{% endif %}</li>
+    {% endfor %}
+  </ul>
+</div></section>
+
+<section class="wrap section split" id="education">
+  <h2>Education</h2>
+  <div class="work-list">
+    <article><p class="eyebrow">Jul 2026 – Jul 2027 (expected)</p><h3>Nanyang Technological University</h3><p class="role">Master of Business Administration · Nanyang Business School</p></article>
+    <article><p class="eyebrow">Sep 2007 – Jun 2011</p><h3>Hebei GEO University</h3><p class="role">BSc, Electronic Information Engineering</p></article>
+  </div>
+</section>
+
+<section class="band" id="hobbies"><div class="wrap section split">
+  <h2>Hobbies</h2>
+  <div class="skills-grid">
+    <article><h3>On the water</h3><p>I surf, kayak, and scuba dive. I hold PADI Open Water and Advanced Open Water certifications.</p></article>
+    <article><h3>On the court</h3><p>I organized a badminton club from 2021 to 2025. I also play pickleball, tennis, and table tennis.</p></article>
+  </div>
+</div></section>

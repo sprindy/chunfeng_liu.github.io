@@ -1,0 +1,22 @@
+title: Chunfeng Liu
+description: Technology leader and Nanyang MBA candidate studying AI infrastructure and product strategy.
+url: https://sprindy.github.io
+baseurl: '/chunfeng_liu.github.io'
+timezone: Asia/Singapore
+permalink: /blog/:title/
+collections:
+  work:
+    output: true
+    permalink: /work/:name/
+defaults:
+  - scope:
+      path: ''
+      type: work
+    values:
+      layout: article
+  - scope:
+      path: ''
+      type: posts
+    values:
+      layout: article
+exclude: [README.md, AGENTS.md, Gemfile, Gemfile.lock, vendor]

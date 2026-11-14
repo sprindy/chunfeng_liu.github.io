@@ -1,0 +1,16 @@
+---
+layout: default
+---
+<article class="wrap prose">
+  {% if page.collection == 'work' %}
+    <a href="{{ '/' | relative_url }}#work">← Work</a>
+  {% else %}
+    <a href="{{ '/' | relative_url }}#blog">← Blog</a>
+  {% endif %}
+  <header>
+    {% if page.topic %}<p class="eyebrow">{{ page.topic | escape }}</p>{% endif %}
+    <h1>{{ page.title | escape }}</h1>
+    <p class="intro">{{ page.description | escape }}</p>
+  </header>
+  {{ content }}
+</article>

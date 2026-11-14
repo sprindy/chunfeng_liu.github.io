@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<section class="wrap prose">
+  <a href="{{ '/' | relative_url }}#blog">← Blog</a>
+  <header><h1>{{ page.title | escape }}</h1></header>
+  {% assign posts = site.posts | where: 'series', page.series %}
+  {% if posts.size > 0 %}
+    <ul class="series-posts">
+      {% for post in posts %}
+        <li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Posts will appear here as they are published.</p>
+  {% endif %}
+</section>
