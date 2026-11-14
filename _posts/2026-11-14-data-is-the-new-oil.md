@@ -1,24 +1,41 @@
 ---
-layout: post
+layout: article
 title: "AI Jargon 101 — Episode 9: Data Is the New Oil in the AI Era 🛢️"
 date: 2026-11-14 18:06:00 +0800
 series: ai-jargon-101
 topic: AI Jargon 101
+reading_layout: true
+reading_label: AI Jargon 101 · Episode 9
+reading_title: "Data Is the New Oil in the AI Era 🛢️"
+description: "Where data comes from, how AI uses it, and how organizations can turn it into revenue or savings."
 ---
+
+<div class="perspective-contents" role="navigation" aria-label="On this page">
+  <strong>On this page</strong>
+  <ul>
+    <li><a href="#section-1-what-is-data">1️⃣ What is data?</a></li>
+    <li><a href="#section-2-where-does-it-come-from">2️⃣ Where does it come from?</a></li>
+    <li><a href="#section-3-how-do-we-use-it">3️⃣ How do we use it?</a></li>
+    <li><a href="#section-4-why-is-data-becoming-easier-to-use">4️⃣ Why is data becoming easier to use?</a></li>
+    <li><a href="#section-5-how-can-data-create-revenue-or-savings">5️⃣ How can data create revenue or savings?</a></li>
+  </ul>
+</div>
 
 We often hear this phrase. But collecting data is only the beginning. Its value grows when we refine it and put it to work.
 
 After exploring processors, memory and storage, let’s look at the data flowing through them.
 
-![Infographic on where data comes from, how AI uses it, and how organizations can create value with it.]({{ '/assets/blog/ai-jargon-101/data-is-the-new-oil.jpg' | relative_url }})
+{% include perspective-figure.html src="/assets/blog/ai-jargon-101/data-is-the-new-oil.jpg" alt="Infographic on where data comes from, how AI uses it, and how organizations can create value with it." caption="From collecting and refining data to putting it to work" %}
 
 ## 1️⃣ What is data?
+{: #section-1-what-is-data }
 
 Data is recorded information: numbers, text, images, audio, video and sensor readings.
 
 “Big data” describes situations where the volume, speed or variety requires specialised tools to handle it.
 
 ## 2️⃣ Where does it come from?
+{: #section-2-where-does-it-come-from }
 
 👤 People create messages, photos and code.
 
@@ -31,6 +48,7 @@ Data is recorded information: numbers, text, images, audio, video and sensor rea
 With my background in embedded software and sensors, I often think of data as a record of the physical world: movement, pressure and timing. The internet is only one source.
 
 ## 3️⃣ How do we use it?
+{: #section-3-how-do-we-use-it }
 
 - Analytics helps us understand patterns and make decisions.
 - Training helps AI learn from examples.
@@ -39,6 +57,7 @@ With my background in embedded software and sensors, I often think of data as a 
 - Evaluation checks whether a system performs reliably.
 
 ## 4️⃣ Why is data becoming easier to use?
+{: #section-4-why-is-data-becoming-easier-to-use }
 
 Two long-term trends help explain it:
 
@@ -51,6 +70,7 @@ These are broad trends, not fixed rules. Storage prices can rise during shortage
 Better tools also make data easier to access and analyse.
 
 ## 5️⃣ How can data create revenue or savings?
+{: #section-5-how-can-data-create-revenue-or-savings }
 
 🔧 **Improve operations:** a factory uses sensor readings to predict equipment failures and reduce downtime.
 

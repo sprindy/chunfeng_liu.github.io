@@ -1,30 +1,47 @@
 ---
-layout: post
+layout: article
 title: "AI Jargon 101 — Episode 7: ML, DL, RL… and now RSI. 🧠"
 date: 2026-11-14 18:04:00 +0800
 series: ai-jargon-101
 topic: AI Jargon 101
+reading_layout: true
+reading_label: AI Jargon 101 · Episode 7
+reading_title: "ML, DL, RL… and now RSI. 🧠"
+description: "How machine learning, deep learning, and reinforcement learning relate, and where recursive self-improvement fits."
 ---
+
+<div class="perspective-contents" role="navigation" aria-label="On this page">
+  <strong>On this page</strong>
+  <ul>
+    <li><a href="#ml-machine-learning">ML — Machine Learning</a></li>
+    <li><a href="#dl-deep-learning">DL — Deep Learning</a></li>
+    <li><a href="#rl-reinforcement-learning">RL — Reinforcement Learning</a></li>
+    <li><a href="#rsi-recursive-self-improvement">RSI — Recursive Self-Improvement</a></li>
+  </ul>
+</div>
 
 In my last post, I explored the processors behind AI. This time, let’s look at how AI learns—and how it might help improve itself.
 
 These terms often appear together, but they describe different things.
 
-![Illustrated guide to machine learning, deep learning, reinforcement learning, and recursive self-improvement.]({{ '/assets/blog/ai-jargon-101/ml-dl-rl-and-rsi.jpg' | relative_url }})
+{% include perspective-figure.html src="/assets/blog/ai-jargon-101/ml-dl-rl-and-rsi.jpg" alt="Illustrated guide to machine learning, deep learning, reinforcement learning, and recursive self-improvement." caption="Four ways to think about how AI learns and improves" %}
 
 ## 📚 ML — Machine Learning
+{: #ml-machine-learning }
 
 The broad idea of learning patterns or behavior from data and experience.
 
 Think of a system learning to recognize spam from past emails.
 
 ## 🕸️ DL — Deep Learning
+{: #dl-deep-learning }
 
 A branch of ML that uses neural networks with many layers to learn complex patterns.
 
 It powers capabilities such as image recognition, speech processing, and large language models.
 
 ## 🎯 RL — Reinforcement Learning
+{: #rl-reinforcement-learning }
 
 An approach within ML where a system learns which actions lead to higher rewards.
 
@@ -33,6 +50,7 @@ Imagine a robot practicing movements and receiving rewards for staying balanced 
 DL and RL can work together: **Deep RL uses deep neural networks to learn a strategy through rewards.**
 
 ## 🔄 RSI — Recursive Self-Improvement
+{: #rsi-recursive-self-improvement }
 
 A process where an AI system improves itself, then uses the improved version to make further improvements.
 
