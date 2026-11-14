@@ -1,0 +1,14 @@
+---
+layout: default
+title: Visitor analytics
+---
+<section class="wrap prose">
+  <a href="{{ '/' | relative_url }}">← Portfolio</a>
+  <header><h1>Visitor analytics</h1></header>
+  {% if site.visitor_analytics_url and site.visitor_analytics_url != '' %}
+    <p><a class="button" href="{{ site.visitor_analytics_url | escape }}">Open analytics sign-in</a></p>
+  {% else %}
+    <p>The private dashboard needs to be connected before you can sign in.</p>
+    <p><a href="https://github.com/sprindy/chunfeng_liu.github.io/blob/main/README.md#private-visitor-analytics">Read the setup instructions</a></p>
+  {% endif %}
+</section>

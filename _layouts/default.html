@@ -28,7 +28,7 @@
   </div></header>
   <main id="main">{{ content }}</main>
   <footer><div class="wrap footer-inner">
-    <span>Chunfeng Liu · Singapore</span>
+    <span data-analytics-sign-in="{% if site.visitor_analytics_url and site.visitor_analytics_url != '' %}{{ site.visitor_analytics_url | escape }}{% else %}{{ '/analytics/' | relative_url }}{% endif %}" tabindex="0" role="link" aria-label="Chunfeng Liu · Singapore. Double-click or press Enter to open visitor analytics.">Chunfeng Liu · Singapore</span>
     <div><a href="https://www.linkedin.com/in/caleb-liu-6a361011a/">LinkedIn ↗</a><a href="https://github.com/sprindy">GitHub ↗</a><a href="https://www.instagram.com/sprindy.liu/">Instagram ↗</a></div>
   </div></footer>
   {% if site.visitor_analytics_url and site.visitor_analytics_url != '' and page.url != '/404.html' %}
@@ -43,5 +43,6 @@
   </div>
   <script src="{{ '/assets/visitor-analytics.js' | relative_url }}?v={{ site.github.build_revision | default: '1' | escape }}" defer></script>
   {% endif %}
+  <script src="{{ '/assets/analytics-shortcut.js' | relative_url }}?v={{ site.github.build_revision | default: '1' | escape }}" defer></script>
 </body>
 </html>
