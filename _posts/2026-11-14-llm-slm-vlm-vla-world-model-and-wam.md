@@ -1,7 +1,8 @@
 ---
-title: "AI Jargon 101 — Episode 1: LLM, SLM, VLM, VLA, World Model… and WAM."
+title: "AI Jargon 101 — Episode 3: LLM, SLM, VLM, VLA, World Model… and WAM."
 topic: AI Jargon 101
 series: ai-jargon-101
+date: 2026-11-14 18:00:00 +0800
 ---
 
 More acronyms. But what do they actually mean?
