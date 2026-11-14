@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-<section class="wrap prose">
+<section class="wrap prose{% if page.series == 'ai-in-perspective' %} perspective-index{% endif %}">
   <a href="{{ '/' | relative_url }}#blog">← Blog</a>
   <header><h1>{{ page.title | escape }}</h1></header>
   {% assign posts = site.posts | where: 'series', page.series %}
@@ -11,7 +11,18 @@ layout: default
   {% if posts.size > 0 %}
     <ul class="series-posts">
       {% for post in posts %}
+        {% if page.series == 'ai-in-perspective' %}
+        {% assign prefix = 'AI in Perspective #' | append: post.episode | append: ' — ' %}
+        <li>
+          <a class="perspective-entry" href="{{ post.url | relative_url }}">
+            <span class="eyebrow">Part {{ post.episode }}</span>
+            <span class="perspective-entry-title">{{ post.title | remove_first: prefix | escape }}</span>
+            <span class="perspective-entry-description">{{ post.description | escape }}</span>
+          </a>
+        </li>
+        {% else %}
         <li><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></li>
+        {% endif %}
       {% endfor %}
     </ul>
   {% else %}

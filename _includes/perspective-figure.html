@@ -1,0 +1,6 @@
+<figure class="perspective-figure">
+  <a href="{{ include.src | relative_url }}" aria-label="Open full-size image. {{ include.caption | escape }}">
+    <img src="{{ include.src | relative_url }}" alt="{{ include.alt | escape }}" decoding="async">
+  </a>
+  <figcaption>{{ include.caption | escape }}</figcaption>
+</figure>

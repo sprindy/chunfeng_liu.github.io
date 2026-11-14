@@ -1,16 +1,27 @@
 ---
 layout: default
 ---
-<article class="wrap prose">
+<article class="wrap prose{% if page.series == 'ai-in-perspective' %} perspective-article{% endif %}">
   {% if page.collection == 'work' %}
     <a href="{{ '/' | relative_url }}#work">← Work</a>
+  {% elsif page.series == 'ai-in-perspective' %}
+    <a class="perspective-back" href="{{ '/blog/ai-in-perspective/' | relative_url }}">← AI in Perspective</a>
   {% else %}
     <a href="{{ '/' | relative_url }}#blog">← Blog</a>
   {% endif %}
+  {% if page.series == 'ai-in-perspective' %}
+  {% assign prefix = 'AI in Perspective #' | append: page.episode | append: ' — ' %}
+  <header class="perspective-header">
+    <p class="eyebrow">AI in Perspective · Part {{ page.episode }}</p>
+    <h1>{{ page.title | remove_first: prefix | escape }}</h1>
+    <p class="intro">{{ page.description | escape }}</p>
+  </header>
+  {% else %}
   <header>
     {% if page.topic %}<p class="eyebrow">{{ page.topic | escape }}</p>{% endif %}
     <h1>{{ page.title | escape }}</h1>
     <p class="intro">{{ page.description | escape }}</p>
   </header>
+  {% endif %}
   {{ content }}
 </article>

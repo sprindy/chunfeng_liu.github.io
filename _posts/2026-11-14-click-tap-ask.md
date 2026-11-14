@@ -4,23 +4,39 @@ title: "AI in Perspective #3 — Click, Tap, Ask: Who Controls the Next Consumer
 date: 2026-11-14 18:12:00 +0800
 series: ai-in-perspective
 topic: AI in Perspective
+episode: 3
+description: "As people move from browsers to apps to AI agents, who gets to become their first point of contact?"
 ---
+
+<div class="perspective-contents" role="navigation" aria-label="On this page">
+  <strong>On this page</strong>
+  <ul>
+    <li><a href="#click-the-pc-internet-era">Click: the PC internet era</a></li>
+    <li><a href="#tap-the-mobile-internet-era">Tap: the mobile internet era</a></li>
+    <li><a href="#ask-and-delegate-the-emerging-agentic-ai-era">Ask—and delegate: the emerging agentic AI era</a></li>
+    <li><a href="#metas-bid-for-the-consumer-gateway">Meta’s bid for the consumer gateway</a></li>
+    <li><a href="#what-an-ai-gateway-means-for-commerce">What an AI gateway means for commerce</a></li>
+  </ul>
+</div>
 
 Consumer technology keeps changing, but four needs remain familiar: information, connection, entertainment and commerce.
 
 What changes is how we access them—and which companies become our first point of contact.
 
-![Three ways to access consumer services: click in a desktop browser, tap a mobile app, or ask an AI agent to carry out a task.]({{ '/assets/blog/ai-in-perspective/click-tap-ask-1.jpg' | relative_url }})
+{% include perspective-figure.html src="/assets/blog/ai-in-perspective/click-tap-ask-1.jpg" alt="Three ways to access consumer services: click in a desktop browser, tap a mobile app, or ask an AI agent to carry out a task." caption="From navigating websites to delegating tasks" %}
 
 ## 🖱️ Click: the PC internet era
+{: #click-the-pc-internet-era }
 
 Browsers and desktop applications became our gateways. Google helped us find information, Facebook connected people, and Amazon brought shopping online. Apple and the Windows–Intel ecosystem supplied much of the computing foundation.
 
 ## 📱 Tap: the mobile internet era
+{: #tap-the-mobile-internet-era }
 
 Apps brought those services into our pockets. Apple and Google’s mobile ecosystems became powerful distribution channels, while social and interest-based feeds reshaped how we discovered people, content and products.
 
 ## 🤖 Ask—and delegate: the emerging agentic AI era
+{: #ask-and-delegate-the-emerging-agentic-ai-era }
 
 Instead of navigating every app ourselves, we can increasingly express an intention:
 
@@ -33,6 +49,7 @@ The next consumer gateway could be a personal agent that understands our intent 
 Agentic AI turns digital assistants from answer providers into task executors. We ask for an outcome and delegate the steps, with appropriate permissions and oversight.
 
 ## Meta’s bid for the consumer gateway
+{: #metas-bid-for-the-consumer-gateway }
 
 My interpretation is that Muse and Ray-Ban Meta smart glasses are complementary parts of Meta’s bid for this gateway.
 
@@ -45,6 +62,7 @@ Together, they could offer new ways to access:
 - 🛒 **Commerce**: discover, compare and purchase with approval.
 
 ## What an AI gateway means for commerce
+{: #what-an-ai-gateway-means-for-commerce }
 
 Whoever becomes our first point of contact can influence which services and merchants we encounter.
 
@@ -56,7 +74,7 @@ For merchants, accurate data and reliable fulfillment matter. For agent provider
 
 The SWOT below explores Meta’s advantages and barriers.
 
-![SWOT analysis of Meta’s Muse personal AI agent and Ray-Ban Meta glasses, including distribution, platform access, merchant partnerships, and trust risks.]({{ '/assets/blog/ai-in-perspective/click-tap-ask-2.jpg' | relative_url }})
+{% include perspective-figure.html src="/assets/blog/ai-in-perspective/click-tap-ask-2.jpg" alt="SWOT analysis of Meta’s Muse personal AI agent and Ray-Ban Meta glasses, including distribution, platform access, merchant partnerships, and trust risks." caption="A SWOT analysis of Meta’s personal AI strategy" %}
 
 **My strategic view**: Meta is trying to move from capturing attention to helping people act on intentions. Muse provides the agent; glasses could provide the everyday interface.
 
