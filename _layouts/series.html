@@ -5,6 +5,9 @@ layout: default
   <a href="{{ '/' | relative_url }}#blog">← Blog</a>
   <header><h1>{{ page.title | escape }}</h1></header>
   {% assign posts = site.posts | where: 'series', page.series %}
+  {% if page.series == 'ai-jargon-101' %}
+    {% assign posts = posts | reverse %}
+  {% endif %}
   {% if posts.size > 0 %}
     <ul class="series-posts">
       {% for post in posts %}
