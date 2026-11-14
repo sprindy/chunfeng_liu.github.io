@@ -1,19 +1,28 @@
 ---
 layout: default
 ---
-<article class="wrap prose{% if page.series == 'ai-in-perspective' %} perspective-article{% endif %}">
+{% assign reading_layout = page.reading_layout %}
+{% assign reading_title = page.reading_title %}
+{% assign reading_label = page.reading_label %}
+{% if page.series == 'ai-in-perspective' %}
+  {% assign reading_layout = true %}
+  {% assign prefix = 'AI in Perspective #' | append: page.episode | append: ' — ' %}
+  {% assign reading_title = page.title | remove_first: prefix %}
+  {% assign reading_label = 'AI in Perspective · Part ' | append: page.episode %}
+{% endif %}
+<article class="wrap prose{% if reading_layout %} perspective-article{% endif %}">
   {% if page.collection == 'work' %}
     <a href="{{ '/' | relative_url }}#work">← Work</a>
-  {% elsif page.series == 'ai-in-perspective' %}
-    <a class="perspective-back" href="{{ '/blog/ai-in-perspective/' | relative_url }}">← AI in Perspective</a>
+  {% elsif reading_layout %}
+    {% assign series_path = '/blog/' | append: page.series | append: '/' %}
+    <a class="perspective-back" href="{{ series_path | relative_url }}">← {{ page.topic | escape }}</a>
   {% else %}
     <a href="{{ '/' | relative_url }}#blog">← Blog</a>
   {% endif %}
-  {% if page.series == 'ai-in-perspective' %}
-  {% assign prefix = 'AI in Perspective #' | append: page.episode | append: ' — ' %}
+  {% if reading_layout %}
   <header class="perspective-header">
-    <p class="eyebrow">AI in Perspective · Part {{ page.episode }}</p>
-    <h1>{{ page.title | remove_first: prefix | escape }}</h1>
+    <p class="eyebrow">{{ reading_label | escape }}</p>
+    <h1>{{ reading_title | escape }}</h1>
     <p class="intro">{{ page.description | escape }}</p>
   </header>
   {% else %}
