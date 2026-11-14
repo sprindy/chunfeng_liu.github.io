@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: article
 title: "AI in Perspective #3 — Click, Tap, Ask: Who Controls the Next Consumer Gateway?"
 date: 2026-11-14 18:12:00 +0800
 series: ai-in-perspective

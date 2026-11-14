@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: article
 title: "AI in Perspective #4 — Why AMD Wants World Labs: Building a Physical AI Flywheel"
 date: 2026-11-14 18:13:00 +0800
 series: ai-in-perspective

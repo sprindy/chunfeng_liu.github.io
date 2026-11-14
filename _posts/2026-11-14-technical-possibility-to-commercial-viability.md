@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: article
 title: "AI in Perspective #1 — From Technical Possibility to Commercial Viability"
 date: 2026-11-14 18:10:00 +0800
 series: ai-in-perspective
