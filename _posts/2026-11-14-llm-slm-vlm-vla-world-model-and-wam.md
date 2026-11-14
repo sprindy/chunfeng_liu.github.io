@@ -10,6 +10,8 @@ In my previous post, I compared generative AI, agentic AI, physical AI and AGI. 
 
 Let’s use one everyday object: a red mug. ☕
 
+![Six AI model types compared using a red mug: LLM, SLM, VLM, VLA, world model, and WAM.]({{ '/assets/blog/ai-jargon-101/six-ai-model-types.jpg' | relative_url }})
+
 ## 💬 LLM — Large Language Model
 
 “Explain how to move the mug.”
@@ -54,4 +56,4 @@ Which term would you like to explore further?
 
 #AIJargon101 #ArtificialIntelligence #PhysicalAI #Robotics
 
-[Original LinkedIn post and illustration](https://www.linkedin.com/posts/caleb-liu-6a361011a_aijargon101-artificialintelligence-physicalai-share-7502888513860968448-BJYp/)
+[Original LinkedIn post](https://www.linkedin.com/posts/caleb-liu-6a361011a_aijargon101-artificialintelligence-physicalai-share-7502888513860968448-BJYp/)
