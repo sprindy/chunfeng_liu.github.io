@@ -1,4 +1,4 @@
-import { dashboard, loginPage } from './views.mjs';
+import { dashboard, dashboardUrl, loginPage } from './views.mjs';
 
 const day = 86_400_000;
 const encoder = new TextEncoder();
@@ -15,8 +15,8 @@ const headers = {
 const html = (body, status = 200, extra = {}) => new Response(body, {
   status, headers: { ...headers, ...extra, 'Content-Type': 'text/html; charset=utf-8' }
 });
-const redirect = cookie => new Response(null, {
-  status: 303, headers: { ...headers, Location: '/', 'Set-Cookie': cookie }
+const redirect = (cookie, location = '/') => new Response(null, {
+  status: 303, headers: { ...headers, Location: location, 'Set-Cookie': cookie }
 });
 
 function cookie(value, age) {
@@ -111,7 +111,8 @@ async function signedIn(request, env) {
   return equal(signature, await sign(env.SESSION_SECRET, time + ':' + env.ADMIN_PASSWORD));
 }
 
-async function login(request, env) {
+async function login(request, env, path, days) {
+  const destination = dashboardUrl(days, path);
   const ip = request.headers.get('CF-Connecting-IP') || '';
   const bucket = Math.floor(Date.now() / (15 * 60_000));
   const key = await sign(env.SESSION_SECRET, 'login:' + ip);
@@ -122,43 +123,47 @@ async function login(request, env) {
       bucket = excluded.bucket
     RETURNING attempts
   `).bind(key, bucket).first();
-  if (row.attempts > 10) return html(loginPage('Too many attempts. Try again in 15 minutes.'), 429);
+  if (row.attempts > 10) return html(loginPage('Too many attempts. Try again in 15 minutes.', destination), 429);
   let form;
   try {
     form = new URLSearchParams(await smallBody(request));
   } catch {
-    return html(loginPage('Invalid sign-in request.'), 400);
+    return html(loginPage('Invalid sign-in request.', destination), 400);
   }
   const expected = JSON.stringify([env.ADMIN_USERNAME, env.ADMIN_PASSWORD]);
   const entered = JSON.stringify([form.get('username') || '', form.get('password') || '']);
   if (!equal(await sign(env.SESSION_SECRET, entered), await sign(env.SESSION_SECRET, expected))) {
-    return html(loginPage('Username or password is incorrect.'), 401);
+    return html(loginPage('Username or password is incorrect.', destination), 401);
   }
   const age = 8 * 60 * 60;
   const time = String(Date.now() + age * 1000);
-  return redirect(cookie(time + '.' + await sign(env.SESSION_SECRET, time + ':' + env.ADMIN_PASSWORD), age));
+  return redirect(cookie(time + '.' + await sign(env.SESSION_SECRET, time + ':' + env.ADMIN_PASSWORD), age), destination);
 }
 
-async function report(db, days) {
+async function report(db, days, path) {
   const cutoff = Date.now() - days * day;
+  const scope = 'WITH selected_views AS (SELECT * FROM page_views WHERE started >= ?' +
+    (path ? ' AND path = ?)' : ')');
   const queries = [
     `SELECT COUNT(*) views, COUNT(DISTINCT visitor) visitors, COUNT(DISTINCT session) visits,
       SUM(active_ms) active_ms, (SELECT COUNT(*) FROM
-      (SELECT visitor FROM page_views WHERE started >= ?1 GROUP BY visitor HAVING COUNT(DISTINCT session) > 1)) repeat
-      FROM page_views WHERE started >= ?1`,
+      (SELECT visitor FROM selected_views GROUP BY visitor HAVING COUNT(DISTINCT session) > 1)) repeat
+      FROM selected_views`,
     `SELECT path, COUNT(*) views, COUNT(DISTINCT visitor) visitors, AVG(active_ms) active_ms
-      FROM page_views WHERE started >= ? GROUP BY path ORDER BY views DESC, path LIMIT 100`,
+      FROM selected_views GROUP BY path ORDER BY views DESC, path LIMIT 100`,
     `SELECT visitor, COUNT(DISTINCT session) visits, COUNT(*) views, SUM(active_ms) active_ms,
-      MAX(started) last_seen FROM page_views WHERE started >= ? GROUP BY visitor ORDER BY visits DESC, last_seen DESC LIMIT 100`,
+      MAX(started) last_seen FROM selected_views GROUP BY visitor ORDER BY visits DESC, last_seen DESC LIMIT 100`,
     `SELECT asn, network, COUNT(DISTINCT visitor) visitors, COUNT(DISTINCT session) visits,
-      COUNT(*) views FROM page_views WHERE started >= ? AND network IS NOT NULL
+      COUNT(*) views FROM selected_views WHERE network IS NOT NULL
       GROUP BY asn, network ORDER BY visits DESC, network LIMIT 100`,
-    `SELECT path, visitor, ip, network, active_ms, started FROM page_views
-      WHERE started >= ? ORDER BY started DESC LIMIT 100`,
+    `SELECT path, visitor, ip, network, active_ms, started FROM selected_views
+      ORDER BY started DESC LIMIT 100`,
     `SELECT date(started / 1000, 'unixepoch', '+8 hours') date, COUNT(*) views
-      FROM page_views WHERE started >= ? GROUP BY date ORDER BY date`
+      FROM selected_views GROUP BY date ORDER BY date`
   ];
-  return (await db.batch(queries.map(query => db.prepare(query).bind(cutoff)))).map(r => r.results);
+  return (await db.batch(queries.map(query =>
+    db.prepare(scope + ' ' + query).bind(...(path ? [cutoff, path] : [cutoff]))
+  ))).map(r => r.results);
 }
 
 export default {
@@ -171,12 +176,18 @@ export default {
     if (request.method === 'POST' && request.headers.get('Origin') !== url.origin) {
       return new Response(null, { status: 403, headers });
     }
-    if (url.pathname === '/login' && request.method === 'POST') return login(request, env);
+    const days = [7, 30, 90].find(n => String(n) === url.searchParams.get('days')) || 30;
+    const path = url.searchParams.get('post') || '';
+    if (path && (path.length > 350 || !path.startsWith(env.SITE_BASE + '/blog/') ||
+        !/^[a-z0-9_-]+\/$/i.test(path.slice((env.SITE_BASE + '/blog/').length)))) {
+      return new Response('Invalid blog post address.', { status: 400, headers });
+    }
+    if (url.pathname === '/login' && request.method === 'POST') return login(request, env, path, days);
     if (url.pathname === '/logout' && request.method === 'POST') return redirect(cookie('', 0));
     if (url.pathname !== '/' || request.method !== 'GET') return new Response(null, { status: 404, headers });
-    if (!await signedIn(request, env)) return html(loginPage());
-    const days = [7, 30, 90].find(n => String(n) === url.searchParams.get('days')) || 30;
-    return html(dashboard(await report(env.DB, days), days, env.STORE_FULL_IP === 'true'));
+    if (!await signedIn(request, env)) return html(loginPage('', dashboardUrl(days, path)));
+    return html(dashboard(await report(env.DB, days, path), days, env.STORE_FULL_IP === 'true',
+      path, env.SITE_BASE + '/blog/'));
   },
   async scheduled(_event, env) {
     await env.DB.batch([

@@ -36,8 +36,14 @@ td:first-child{overflow-wrap:anywhere}th{white-space:nowrap;color:#435b61;backgr
 </style><main>${body}</main></html>`;
 }
 
-export function loginPage(error = '') {
-  return page('Visitor analytics sign-in', `<form class="login" method="post" action="/login">
+export function dashboardUrl(days, path = '') {
+  const query = new URLSearchParams({ days: String(days) });
+  if (path) query.set('post', path);
+  return '/?' + query.toString();
+}
+
+export function loginPage(error = '', destination = '/') {
+  return page('Visitor analytics sign-in', `<form class="login" method="post" action="${esc('/login' + destination.slice(1))}">
 <h1>Visitor analytics</h1><p>Sign in to view your portfolio’s private dashboard.</p>
 ${error ? '<p class="error" role="alert">' + esc(error) + '</p>' : ''}
 <label>Username<input name="username" autocomplete="username" maxlength="150" required></label>
@@ -45,10 +51,13 @@ ${error ? '<p class="error" role="alert">' + esc(error) + '</p>' : ''}
 <button type="submit">Sign in</button></form>`);
 }
 
-function table(title, headers, rows, description = '') {
+function table(title, headers, rows, description = '', firstColumnLink) {
   return `<section><h2>${esc(title)}</h2>${description ? '<p>' + esc(description) + '</p>' : ''}
 ${rows.length ? '<div class="scroll"><table><thead><tr>' + headers.map(h => '<th scope="col">' + esc(h) + '</th>').join('') +
-  '</tr></thead><tbody>' + rows.map(r => '<tr>' + r.map(c => '<td>' + esc(c) + '</td>').join('') + '</tr>').join('') +
+  '</tr></thead><tbody>' + rows.map(r => '<tr>' + r.map((c, index) => {
+    const href = index === 0 && firstColumnLink?.(c);
+    return '<td>' + (href ? '<a href="' + esc(href) + '">' + esc(c) + '</a>' : esc(c)) + '</td>';
+  }).join('') + '</tr>').join('') +
   '</tbody></table></div>' : '<p>No activity in this period.</p>'}</section>`;
 }
 
@@ -72,19 +81,22 @@ ${series.map(([date, count]) => {
 <div class="chart-axis"><span>${series[0][0]}</span><span>${series.at(-1)[0]}</span></div></section>`;
 }
 
-export function dashboard([totals, pages, visitors, networks, recent, daily], days, fullIp) {
+export function dashboard([totals, pages, visitors, networks, recent, daily], days, fullIp, path, blogBase) {
   const { views, visitors: unique, visits, repeat, active_ms } = totals[0];
   const metrics = [['Visitors', number(unique)], ['Visits', number(visits)], ['Repeat visitors', number(repeat)],
     ['Page views', number(views)], ['Time on visible pages', duration(active_ms)]];
   return page('Visitor analytics', `<header><div><h1>Visitor analytics</h1>
-<p>Portfolio traffic from browsers that allowed analytics.</p></div>
+<p>${path ? 'Blog post · ' + esc(path.slice(blogBase.length)) : 'Portfolio traffic from browsers that allowed analytics.'}</p>
+${path ? '<a href="' + esc(dashboardUrl(days)) + '">← All portfolio traffic</a>' : ''}</div>
 <form method="post" action="/logout"><button type="submit">Sign out</button></form></header>
 <nav class="tabs" aria-label="Date range">${[7, 30, 90].map(n =>
-    `<a href="/?days=${n}"${n === days ? ' aria-current="page"' : ''}>Last ${n} days</a>`).join('')}</nav>
+    `<a href="${esc(dashboardUrl(n, path))}"${n === days ? ' aria-current="page"' : ''}>Last ${n} days</a>`).join('')}</nav>
 <div class="stats">${metrics.map(([label, value]) => '<section><b>' + esc(value) + '</b>' + esc(label) + '</section>').join('')}</div>
 ${trend(daily, days)}
 ${table('Pages', ['Page', 'Views', 'Visitors', 'Avg. visible time'], pages.map(r =>
-    [r.path, number(r.views), number(r.visitors), duration(r.active_ms)]))}
+    [r.path, number(r.views), number(r.visitors), duration(r.active_ms)]), '',
+    pagePath => !path && pagePath.startsWith(blogBase) && /^[a-z0-9_-]+\/$/i.test(pagePath.slice(blogBase.length))
+      ? dashboardUrl(days, pagePath) : '')}
 ${table('Visitors', ['Browser ID', 'Visits', 'Views', 'Visible time', 'Last seen'], visitors.map(r =>
     [r.visitor, number(r.visits), number(r.views), duration(r.active_ms), stamp(r.last_seen)]),
     'A visit restarts after 30 minutes of inactivity. The same browser keeps its ID while its settings are saved.')}
