@@ -31,8 +31,8 @@
   <section class="wrap post-engagement" aria-label="Post engagement" data-public-post-stats="{{ site.visitor_analytics_url | escape }}"
     data-post-path="{{ page.url | relative_url | escape }}">
     <div class="post-engagement-actions">
-      <button type="button" data-post-like hidden aria-pressed="false" disabled>Like <span data-like-count></span></button>
-      <button type="button" data-post-comments hidden aria-expanded="false" aria-controls="post-comments" disabled>Comment <span data-comment-count></span></button>
+      <button type="button" data-post-like hidden aria-pressed="false" disabled><span aria-hidden="true">👍</span> Like <span data-like-count></span></button>
+      <button type="button" data-post-comments hidden aria-expanded="false" aria-controls="post-comments" disabled><span aria-hidden="true">💬</span> Comment <span data-comment-count></span></button>
       <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url | url_encode }}" target="_blank" rel="noopener noreferrer">Repost on LinkedIn ↗</a>
       <button type="button" data-post-share>Share</button>
     </div>
