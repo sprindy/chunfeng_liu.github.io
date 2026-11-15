@@ -28,8 +28,27 @@
   </div></header>
   <main id="main">{{ content }}</main>
   {% if page.collection == 'posts' and site.visitor_analytics_url and site.visitor_analytics_url != '' %}
-  <div class="wrap post-view-count" data-public-post-stats="{{ site.visitor_analytics_url | escape }}"
-    data-post-path="{{ page.url | relative_url | escape }}" aria-live="polite" hidden></div>
+  <section class="wrap post-engagement" aria-label="Post engagement" data-public-post-stats="{{ site.visitor_analytics_url | escape }}"
+    data-post-path="{{ page.url | relative_url | escape }}">
+    <div class="post-engagement-actions">
+      <button type="button" data-post-like hidden aria-pressed="false" disabled>Like <span data-like-count></span></button>
+      <button type="button" data-post-comments hidden aria-expanded="false" aria-controls="post-comments" disabled>Comment <span data-comment-count></span></button>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url | url_encode }}" target="_blank" rel="noopener noreferrer">Repost on LinkedIn ↗</a>
+      <button type="button" data-post-share>Share</button>
+    </div>
+    <p class="post-view-count" data-post-views hidden></p>
+    <p role="status" data-post-status></p>
+    <div id="post-comments" hidden>
+      <h2>Comments</h2>
+      <div data-post-comment-list></div>
+      <form method="post" data-post-comment-form>
+        <label>Display name <input name="name" maxlength="60" placeholder="Optional"></label>
+        <label>Comment <textarea name="body" maxlength="1000" rows="4" required></textarea></label>
+        <button type="submit">Submit comment</button>
+        <p>Comments appear after review.</p>
+      </form>
+    </div>
+  </section>
   <script src="{{ '/assets/public-post-stats.js' | relative_url }}?v={{ site.github.build_revision | default: '1' | escape }}" defer></script>
   {% endif %}
   <footer><div class="wrap footer-inner">

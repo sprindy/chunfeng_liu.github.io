@@ -88,7 +88,7 @@ export function dashboard([totals, pages, visitors, networks, recent, daily], da
   return page('Visitor analytics', `<header><div><h1>Visitor analytics</h1>
 <p>${path ? 'Blog post · ' + esc(path.slice(blogBase.length)) : 'Portfolio traffic from browsers that allowed analytics.'}</p>
 ${path ? '<a href="' + esc(dashboardUrl(days)) + '">← All portfolio traffic</a>' : ''}</div>
-<form method="post" action="/logout"><button type="submit">Sign out</button></form></header>
+<div><p><a href="/comments">Moderate comments</a></p><form method="post" action="/logout"><button type="submit">Sign out</button></form></div></header>
 <nav class="tabs" aria-label="Date range">${[7, 30, 90].map(n =>
     `<a href="${esc(dashboardUrl(n, path))}"${n === days ? ' aria-current="page"' : ''}>Last ${n} days</a>`).join('')}</nav>
 <div class="stats">${metrics.map(([label, value]) => '<section><b>' + esc(value) + '</b>' + esc(label) + '</section>').join('')}</div>
@@ -106,4 +106,16 @@ ${table('Organizations and networks', ['Network owner', 'ASN', 'Visitors', 'Visi
 ${table('Recent page views', ['Page opened', 'Page', 'Browser ID', fullIp ? 'IP address' : 'IP prefix', 'Network', 'Visible time'], recent.map(r =>
     [stamp(r.started), r.path, r.visitor, r.ip || '—', r.network || '—', duration(r.active_ms)]), 'Latest 100 page views in the selected period.')}
 `);
+}
+
+export function moderationPage(comments) {
+  return page('Moderate comments', `<header><div><h1>Moderate comments</h1><p><a href="/">← Visitor analytics</a></p></div></header>
+${comments.length ? comments.map(({ id, path, name, body }) => `<section>
+  <h2>${esc(name)}</h2><p>${esc(path)}</p><p style="white-space: pre-wrap; overflow-wrap: anywhere">${esc(body)}</p>
+  <form action="/comments" method="post">
+    <input type="hidden" name="id" value="${esc(id)}">
+    <button type="submit" name="action" value="approve">Approve</button>
+    <button type="submit" name="action" value="reject">Reject</button>
+  </form>
+</section>`).join('') : '<section><p>No comments awaiting review.</p></section>'}`);
 }

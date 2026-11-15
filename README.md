@@ -28,3 +28,9 @@ The public site stays on GitHub Pages. The collector, private dashboard and D1 d
 Reports include 7-, 30-, and 90-day ranges, page views and visible time per page, repeat visits by browser, and visits grouped by the network that handled them. Browsers can share networks or clear their saved IDs. Company attribution reflects the network owner, which can instead be an ISP or VPN. Collection starts when analytics are enabled. There is no historical backfill.
 
 The dashboard displays IP prefixes by default. To record full IP addresses for new page views, set `STORE_FULL_IP = "true"` in the Worker configuration and redeploy. The Worker deletes analytics rows older than 90 days on a daily schedule. Keep dashboard credentials and visitor data out of Git.
+
+## Public blog engagement
+
+Each post footer shows the existing view count, a LinkedIn repost link, and a Share button. Likes and comments appear when the engagement endpoint is available. Submitted comments go to **Moderate comments** in the private dashboard, where you can approve or reject them.
+
+For an existing analytics deployment, apply `_analytics/migrations/0002_post_engagement.sql` to the existing D1 database before deploying the updated Worker. If the database was provisioned in the Cloudflare console without Wrangler migration records, run the statements in that file from the console. Keep the existing database binding, variables and secrets.

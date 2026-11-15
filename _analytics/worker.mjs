@@ -1,4 +1,4 @@
-import { dashboard, dashboardUrl, loginPage } from './views.mjs';
+import { dashboard, dashboardUrl, loginPage, moderationPage } from './views.mjs';
 
 const day = 86_400_000;
 const encoder = new TextEncoder();
@@ -165,6 +165,92 @@ async function publicPostStats(request, env, url) {
   return Response.json({ views }, { headers: responseHeaders });
 }
 
+async function postEngagement(request, env, url) {
+  const headers = {
+    'Cache-Control': 'no-store',
+    'Access-Control-Allow-Origin': env.SITE_ORIGIN,
+    'X-Content-Type-Options': 'nosniff'
+  };
+  const json = (body, status = 200) => Response.json(body, { status, headers });
+  const path = url.searchParams.get('post') || '';
+  if (!isBlogPostPath(path, env.SITE_BASE + '/blog/')) return json({ error: 'Invalid blog post.' }, 400);
+
+  if (request.method === 'GET') {
+    const reader = url.searchParams.get('reader') || '';
+    if (reader && !uuid.test(reader)) return json({ error: 'Invalid reader ID.' }, 400);
+    const [likes, comments] = await env.DB.batch([
+      env.DB.prepare('SELECT COUNT(*) AS count, COALESCE(MAX(reader = ?), 0) AS liked FROM post_likes WHERE path = ?').bind(reader, path),
+      env.DB.prepare(`SELECT name, body, created, COUNT(*) OVER () AS total
+        FROM post_comments WHERE path = ? AND approved = 1
+        ORDER BY created DESC LIMIT 50`).bind(path)
+    ]);
+    return json({
+      likes: likes.results[0].count,
+      liked: Boolean(likes.results[0].liked),
+      commentCount: comments.results[0]?.total || 0,
+      comments: comments.results.map(({ name, body, created }) => ({ name, body, created }))
+    });
+  }
+  if (request.method !== 'POST') return json({ error: 'Method not allowed.' }, 405);
+  if (request.headers.get('Origin') !== env.SITE_ORIGIN) return json({ error: 'Request origin rejected.' }, 403);
+
+  let input;
+  try {
+    input = JSON.parse(await smallBody(request, 8192));
+  } catch {
+    return json({ error: 'Invalid or oversized request.' }, 400);
+  }
+  if (input?.action === 'like' && typeof input.reader === 'string' && uuid.test(input.reader) &&
+      typeof input.liked === 'boolean') {
+    const statement = input.liked
+      ? 'INSERT OR IGNORE INTO post_likes (path, reader) VALUES (?, ?)'
+      : 'DELETE FROM post_likes WHERE path = ? AND reader = ?';
+    await env.DB.prepare(statement).bind(path, input.reader).run();
+    const { count } = await env.DB.prepare('SELECT COUNT(*) AS count FROM post_likes WHERE path = ?').bind(path).first();
+    return json({ likes: count, liked: input.liked });
+  }
+  if (input?.action !== 'comment' || typeof input.name !== 'string' || typeof input.body !== 'string') {
+    return json({ error: 'Invalid comment.' }, 400);
+  }
+  const name = input.name.trim() || 'Anonymous';
+  const body = input.body.trim();
+  if (name.length > 60 || !body || body.length > 1000) {
+    return json({ error: 'Use a name of up to 60 characters and a comment of 1–1,000 characters.' }, 400);
+  }
+  const created = Date.now();
+  const result = await env.DB.prepare(`INSERT INTO post_comments (id, path, name, body, created)
+    SELECT ?, ?, ?, ?, ? WHERE (SELECT COUNT(*) FROM post_comments WHERE approved = 0) < 250`)
+    .bind(crypto.randomUUID(), path, name, body, created).run();
+  if (!result.meta.changes) return json({ error: 'The review queue is full. Try again later.' }, 429);
+  return json({ pending: true }, 202);
+}
+
+async function moderateComments(request, env) {
+  if (request.method === 'GET') {
+    const { results } = await env.DB.prepare(
+      'SELECT id, path, name, body FROM post_comments WHERE approved = 0 ORDER BY created DESC LIMIT 100'
+    ).all();
+    return html(moderationPage(results));
+  }
+  if (request.method !== 'POST') return new Response(null, { status: 405, headers });
+  let form;
+  try {
+    form = new URLSearchParams(await smallBody(request));
+  } catch {
+    return new Response('Invalid moderation request.', { status: 400, headers });
+  }
+  const id = form.get('id') || '';
+  const action = form.get('action');
+  if (!uuid.test(id) || !['approve', 'reject'].includes(action)) {
+    return new Response('Invalid moderation request.', { status: 400, headers });
+  }
+  const statement = action === 'approve'
+    ? 'UPDATE post_comments SET approved = 1 WHERE id = ? AND approved = 0'
+    : 'DELETE FROM post_comments WHERE id = ? AND approved = 0';
+  await env.DB.prepare(statement).bind(id).run();
+  return new Response(null, { status: 303, headers: { ...headers, Location: '/comments' } });
+}
+
 async function report(db, days, path) {
   const cutoff = Date.now() - days * day;
   const scope = 'WITH selected_views AS (SELECT * FROM page_views WHERE started >= ?' +
@@ -196,6 +282,7 @@ export default {
     const url = new URL(request.url);
     if (url.pathname === '/collect') return collect(request, env);
     if (url.pathname === '/post-stats') return publicPostStats(request, env, url);
+    if (url.pathname === '/post-engagement') return postEngagement(request, env, url);
     if (!env.ADMIN_USERNAME || env.ADMIN_PASSWORD?.length < 12 || !env.ADMIN_PASSWORD || !env.SESSION_SECRET || env.SESSION_SECRET.length < 32) {
       return new Response('Dashboard setup is incomplete.', { status: 503, headers });
     }
@@ -209,6 +296,10 @@ export default {
     }
     if (url.pathname === '/login' && request.method === 'POST') return login(request, env, path, days);
     if (url.pathname === '/logout' && request.method === 'POST') return redirect(cookie('', 0));
+    if (url.pathname === '/comments') {
+      if (await signedIn(request, env)) return moderateComments(request, env);
+      return new Response(null, { status: 303, headers: { ...headers, Location: '/' } });
+    }
     if (url.pathname !== '/' || request.method !== 'GET') return new Response(null, { status: 404, headers });
     if (!await signedIn(request, env)) return html(loginPage('', dashboardUrl(days, path)));
     return html(dashboard(await report(env.DB, days, path), days, env.STORE_FULL_IP === 'true',
