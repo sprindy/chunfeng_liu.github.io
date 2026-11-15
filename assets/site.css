@@ -203,3 +203,11 @@ footer { background: var(--navy); color: #f7faf5; padding-block: 1.8rem; }
 .perspective-entry-title { font: 400 clamp(1.65rem, 3.8vw, 2.35rem)/1.08 var(--serif); }
 .perspective-entry:hover .perspective-entry-title { text-decoration: underline; }
 .perspective-entry-description { color: var(--muted); }
+
+.post-view-count {
+  max-width: 760px;
+  border-top: 1px solid var(--line);
+  padding-block: .9rem 1.4rem;
+  color: var(--muted);
+  font-size: .9rem;
+}

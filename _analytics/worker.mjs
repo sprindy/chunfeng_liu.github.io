@@ -140,6 +140,31 @@ async function login(request, env, path, days) {
   return redirect(cookie(time + '.' + await sign(env.SESSION_SECRET, time + ':' + env.ADMIN_PASSWORD), age), destination);
 }
 
+function isBlogPostPath(path, base) {
+  return path.length <= 350 && path.startsWith(base) &&
+    /^[a-z0-9_-]+\/$/i.test(path.slice(base.length));
+}
+
+async function publicPostStats(request, env, url) {
+  const responseHeaders = {
+    'Access-Control-Allow-Origin': env.SITE_ORIGIN,
+    'Cache-Control': 'public, max-age=300',
+    'Content-Type': 'application/json; charset=utf-8',
+    'X-Content-Type-Options': 'nosniff'
+  };
+  if (request.method !== 'GET') {
+    return new Response(null, { status: 405, headers: { Allow: 'GET' } });
+  }
+  const path = url.searchParams.get('post') || '';
+  if (!isBlogPostPath(path, env.SITE_BASE + '/blog/')) {
+    return Response.json({ error: 'Invalid blog post address.' }, { status: 400, headers: responseHeaders });
+  }
+  const { views } = await env.DB.prepare(
+    'SELECT COUNT(*) AS views FROM page_views WHERE path = ? AND started >= ?'
+  ).bind(path, Date.now() - 90 * day).first();
+  return Response.json({ views }, { headers: responseHeaders });
+}
+
 async function report(db, days, path) {
   const cutoff = Date.now() - days * day;
   const scope = 'WITH selected_views AS (SELECT * FROM page_views WHERE started >= ?' +
@@ -170,6 +195,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname === '/collect') return collect(request, env);
+    if (url.pathname === '/post-stats') return publicPostStats(request, env, url);
     if (!env.ADMIN_USERNAME || env.ADMIN_PASSWORD?.length < 12 || !env.ADMIN_PASSWORD || !env.SESSION_SECRET || env.SESSION_SECRET.length < 32) {
       return new Response('Dashboard setup is incomplete.', { status: 503, headers });
     }
@@ -178,8 +204,7 @@ export default {
     }
     const days = [7, 30, 90].find(n => String(n) === url.searchParams.get('days')) || 30;
     const path = url.searchParams.get('post') || '';
-    if (path && (path.length > 350 || !path.startsWith(env.SITE_BASE + '/blog/') ||
-        !/^[a-z0-9_-]+\/$/i.test(path.slice((env.SITE_BASE + '/blog/').length)))) {
+    if (path && !isBlogPostPath(path, env.SITE_BASE + '/blog/')) {
       return new Response('Invalid blog post address.', { status: 400, headers });
     }
     if (url.pathname === '/login' && request.method === 'POST') return login(request, env, path, days);

@@ -27,6 +27,11 @@
     <div class="contact" aria-label="Social profiles"><a href="https://www.linkedin.com/in/caleb-liu-6a361011a/">LinkedIn ↗</a><a href="https://github.com/sprindy">GitHub ↗</a><a href="https://www.instagram.com/sprindy.liu/">Instagram ↗</a></div>
   </div></header>
   <main id="main">{{ content }}</main>
+  {% if page.collection == 'posts' and site.visitor_analytics_url and site.visitor_analytics_url != '' %}
+  <div class="wrap post-view-count" data-public-post-stats="{{ site.visitor_analytics_url | escape }}"
+    data-post-path="{{ page.url | relative_url | escape }}" aria-live="polite" hidden></div>
+  <script src="{{ '/assets/public-post-stats.js' | relative_url }}?v={{ site.github.build_revision | default: '1' | escape }}" defer></script>
+  {% endif %}
   <footer><div class="wrap footer-inner">
     <span data-analytics-sign-in="{% if site.visitor_analytics_url and site.visitor_analytics_url != '' %}{{ site.visitor_analytics_url | escape }}{% if page.collection == 'posts' %}?post={{ page.url | relative_url | url_encode }}{% endif %}{% else %}{{ '/analytics/' | relative_url }}{% endif %}" tabindex="0" role="link" aria-label="Chunfeng Liu · Singapore. Double-click or press Enter to open visitor analytics.">Chunfeng Liu · Singapore</span>
     <div><a href="https://www.linkedin.com/in/caleb-liu-6a361011a/">LinkedIn ↗</a><a href="https://github.com/sprindy">GitHub ↗</a><a href="https://www.instagram.com/sprindy.liu/">Instagram ↗</a></div>
