@@ -52,7 +52,7 @@ h3 { font: 700 clamp(1.25rem, 2.5vw, 2rem)/1.16 var(--sans); letter-spacing: -.0
   border-bottom: 1px solid var(--line);
 }
 .hero-inner { align-self: center; }
-.hero h1 { font-size: clamp(3.2rem, 5.2vw, 5rem); margin-block: .55rem 1.25rem; }
+.hero h1 { font-size: clamp(3.2rem, 4.65vw, 4.55rem); margin-block: .55rem 1.25rem; text-wrap: balance; }
 .hero h1 span { color: var(--blue); }
 .hero-portrait {
   width: 100%;
