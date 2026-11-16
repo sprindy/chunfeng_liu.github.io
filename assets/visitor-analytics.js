@@ -3,6 +3,7 @@
   if (!control || !globalThis.crypto?.randomUUID) return;
 
   const prompt = document.querySelector('[data-analytics-prompt]');
+  const settingsButton = document.querySelector('[data-analytics-settings]');
   const key = 'chunfeng-portfolio-analytics';
   const endpoint = new URL('/collect', control.dataset.visitorAnalytics);
   const path = control.dataset.pagePath;
@@ -73,6 +74,10 @@
   try {
     const previous = read();
     reflect(previous.choice);
+    if (settingsButton && typeof control.showModal === 'function') {
+      settingsButton.addEventListener('click', () => control.showModal());
+      settingsButton.hidden = false;
+    }
     if (previous.choice === 'allow') start(previous);
     for (const button of document.querySelectorAll('[data-analytics-choice]')) {
       button.addEventListener('click', () => {
