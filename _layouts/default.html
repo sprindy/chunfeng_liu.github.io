@@ -63,7 +63,7 @@
   <script src="{{ '/assets/public-post-stats.js' | relative_url }}?v={{ site.github.build_revision | default: '1' | escape }}" defer></script>
   {% endif %}
   <footer><div class="wrap footer-inner">
-    <span data-analytics-sign-in="{% if site.visitor_analytics_url and site.visitor_analytics_url != '' %}{{ site.visitor_analytics_url | escape }}{% if page.collection == 'posts' %}?post={{ page.url | relative_url | url_encode }}{% endif %}{% else %}{{ '/analytics/' | relative_url }}{% endif %}" tabindex="0" role="link" aria-label="Chunfeng Liu · Singapore. Double-click or press Enter to open visitor analytics.">Chunfeng Liu · Singapore</span>
+    <span data-analytics-sign-in="{% if site.visitor_analytics_url and site.visitor_analytics_url != '' %}{{ site.visitor_analytics_url | escape }}{% else %}{{ '/analytics/' | relative_url }}{% endif %}" tabindex="0" role="link" aria-label="Chunfeng Liu · Singapore. Double-click or press Enter to open site-wide visitor analytics.">Chunfeng Liu · Singapore</span>
     <div><a href="https://www.linkedin.com/in/caleb-liu-6a361011a/">LinkedIn ↗</a><a href="https://github.com/sprindy">GitHub ↗</a><a href="https://www.instagram.com/sprindy.liu/">Instagram ↗</a>
       {% if site.visitor_analytics_url and site.visitor_analytics_url != '' and page.url != '/404.html' %}
       <button class="footer-privacy" type="button" data-analytics-settings aria-haspopup="dialog" aria-controls="analytics-settings" hidden>Privacy</button>
