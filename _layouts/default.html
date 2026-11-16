@@ -26,7 +26,18 @@
     </nav>
     <div class="contact" aria-label="Social profiles"><a href="https://www.linkedin.com/in/caleb-liu-6a361011a/">LinkedIn ↗</a><a href="https://github.com/sprindy">GitHub ↗</a><a href="https://www.instagram.com/sprindy.liu/">Instagram ↗</a></div>
   </div></header>
-  <main id="main">{{ content }}</main>
+  {% if site.visitor_analytics_url and site.visitor_analytics_url != '' and page.url != '/404.html' %}
+  <section class="analytics-prompt" aria-label="Optional visitor analytics" data-analytics-prompt hidden>
+    <div class="wrap analytics-prompt-inner">
+      <p><strong>Optional visitor analytics.</strong> Allow this site to record pages viewed, time spent, a random browser ID, and network information such as an IP prefix for up to 90 days. You can change your choice in the footer.</p>
+      <div class="analytics-prompt-actions">
+        <button class="analytics-choice" type="button" data-analytics-choice="allow">Allow analytics</button>
+        <button class="analytics-choice" type="button" data-analytics-choice="decline">Keep off</button>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+  <main id="main" tabindex="-1">{{ content }}</main>
   {% if page.collection == 'posts' and site.visitor_analytics_url and site.visitor_analytics_url != '' %}
   <section class="wrap post-engagement" aria-label="Post engagement" data-public-post-stats="{{ site.visitor_analytics_url | escape }}"
     data-post-path="{{ page.url | relative_url | escape }}">

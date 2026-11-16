@@ -2,6 +2,7 @@
   const control = document.querySelector('[data-visitor-analytics]');
   if (!control || !globalThis.crypto?.randomUUID) return;
 
+  const prompt = document.querySelector('[data-analytics-prompt]');
   const key = 'chunfeng-portfolio-analytics';
   const endpoint = new URL('/collect', control.dataset.visitorAnalytics);
   const path = control.dataset.pagePath;
@@ -64,6 +65,7 @@
   }
 
   function reflect(choice) {
+    if (prompt) prompt.hidden = choice === 'allow' || choice === 'decline';
     control.querySelector('[data-analytics-status]').textContent = choice === 'allow'
       ? 'Analytics allowed.' : choice === 'decline' ? 'Analytics disabled.' : 'Analytics are off until you allow them.';
   }
@@ -72,7 +74,7 @@
     const previous = read();
     reflect(previous.choice);
     if (previous.choice === 'allow') start(previous);
-    for (const button of control.querySelectorAll('[data-analytics-choice]')) {
+    for (const button of document.querySelectorAll('[data-analytics-choice]')) {
       button.addEventListener('click', () => {
         try {
           const choice = button.dataset.analyticsChoice;
@@ -83,7 +85,9 @@
             write({ choice });
             stop();
           }
+          const moveFocus = prompt?.contains(button) && document.activeElement === button;
           reflect(choice);
+          if (moveFocus) document.getElementById('main')?.focus({ preventScroll: true });
         } catch {
           stop();
         }

@@ -238,3 +238,34 @@ footer { background: var(--navy); color: #f7faf5; padding-block: 1.8rem; }
 }
 .post-comment { border-bottom: 1px solid var(--line); padding-block: .65rem; overflow-wrap: anywhere; }
 .post-comment p { white-space: pre-wrap; }
+
+.analytics-prompt {
+  background: var(--tint);
+  border-bottom: 1px solid var(--line);
+}
+.analytics-prompt-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .65rem 1.5rem;
+  padding-block: .7rem;
+}
+.analytics-prompt p {
+  flex: 1 1 29rem;
+  color: var(--muted);
+  font-size: .875rem;
+  line-height: 1.5;
+}
+.analytics-prompt strong { color: var(--ink); }
+.analytics-prompt-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+.analytics-choice {
+  padding: .45rem .75rem;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid #a5bbb2;
+  border-radius: 4px;
+  font: 600 .875rem/1.4 var(--sans);
+  cursor: pointer;
+}
+.analytics-choice:hover { background: var(--aqua); }

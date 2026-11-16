@@ -16,7 +16,7 @@ For a local preview, run `bundle install` and `bundle exec jekyll serve`, then u
 
 ## Private visitor analytics
 
-The public site stays on GitHub Pages. The collector, private dashboard and D1 database run in your Cloudflare account. The public site starts sending analytics only after a visitor allows it and a deployed collector URL is configured.
+The public site stays on GitHub Pages. The collector, private dashboard and D1 database run in your Cloudflare account. The public site starts sending analytics only after a visitor allows it and a deployed collector URL is configured. The site shows the choice to visitors who have yet to decide. Visitors can change it in the footer.
 
 1. From `_analytics/`, run `npx wrangler login` in your terminal and sign in to your Cloudflare account.
 2. Run `npx wrangler d1 create portfolio-analytics`. In your local copy of `wrangler.toml`, replace the example `database_id` with the returned ID.
