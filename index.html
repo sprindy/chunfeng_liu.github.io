@@ -29,7 +29,10 @@ layout: default
     <p class="case-links"><a href="https://www.linkedin.com/in/caleb-liu-6a361011a/">Full work experience on LinkedIn ↗</a></p>
     {% assign case_studies = site.work | sort: 'order' %}
     <article>
-      <h3>TDK-InvenSense</h3>
+      <div>
+        <h3>TDK-InvenSense</h3>
+        <p>Shanghai, China</p>
+      </div>
       <div class="work-role">
         <p class="role">System Software Manager</p>
         <p class="work-date">Jan 2018 – Jun 2026</p>
@@ -38,7 +41,10 @@ layout: default
       <ul class="case-links">{% for study in case_studies %}{% if study.employer == 'TDK-InvenSense' %}<li><a href="{{ study.url | relative_url }}">{{ study.title | escape }} ↗</a></li>{% endif %}{% endfor %}</ul>
     </article>
     <article>
-      <h3>HTC</h3>
+      <div>
+        <h3>HTC</h3>
+        <p>Shanghai, China</p>
+      </div>
       <div class="work-role">
         <p class="role">Senior Software Engineer</p>
         <p class="work-date">Jul 2015 – Dec 2017</p>
@@ -48,7 +54,10 @@ layout: default
       <ul class="case-links"><li><a href="{{ htc_study.url | relative_url }}">{{ htc_study.title | escape }} ↗</a></li></ul>
     </article>
     <article>
-      <h3>ArcherMind Technology</h3>
+      <div>
+        <h3>ArcherMind Technology</h3>
+        <p>Shanghai, China</p>
+      </div>
       <div class="work-role">
         <p class="role">Software Engineer</p>
         <p class="work-date">Mar 2014 – May 2015</p>
@@ -56,7 +65,10 @@ layout: default
       <p>Delivered five or more Android integrations for Intel automotive systems across telephony, audio, storage, and boot.</p>
     </article>
     <article>
-      <h3>Jiangsu Radio Factory</h3>
+      <div>
+        <h3>Jiangsu Radio Factory</h3>
+        <p>Nanjing, China</p>
+      </div>
       <div class="work-role">
         <p class="role">Embedded Software Engineer</p>
         <p class="work-date">Jun 2011 – Aug 2013</p>
