@@ -319,3 +319,11 @@ footer { background: var(--tint); color: var(--ink); border-top: 1px solid var(-
 .analytics-settings::backdrop { background: #081e2966; }
 .analytics-settings h2 { font-size: 2rem; }
 .analytics-settings p { margin-block: .75rem; }
+
+@media (min-width: 701px) {
+  #about.hero .hero-portrait {
+    align-self: stretch;
+    aspect-ratio: auto;
+    max-height: none;
+  }
+}
