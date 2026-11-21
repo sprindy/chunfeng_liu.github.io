@@ -5,7 +5,28 @@ layout: default
   <div class="hero-inner">
     <p class="eyebrow">Singapore · Nanyang MBA candidate</p>
     <h1 id="name">Chunfeng <span>(Caleb)</span> Liu</h1>
-    <p class="hero-summary">Engineering leadership, <strong>AI infrastructure research</strong>, and product strategy.</p>
+    <svg viewBox="0 0 440 360" role="img" aria-labelledby="rings-title" style="display:block;width:100%;max-width:25rem;height:auto;margin:1rem 0">
+      <title id="rings-title">AI leader at the intersection of business and strategic knowledge, AI expertise, and IT skills</title>
+      <defs>
+        <clipPath id="business-ring"><circle cx="152" cy="125" r="112"/></clipPath>
+        <clipPath id="expertise-ring"><circle cx="288" cy="125" r="112"/></clipPath>
+      </defs>
+      <g fill="#204ba8">
+        <circle cx="152" cy="125" r="112"/><circle cx="288" cy="125" r="112"/><circle cx="220" cy="235" r="112"/>
+      </g>
+      <g fill="#4385db">
+        <circle cx="288" cy="125" r="112" clip-path="url(#business-ring)"/>
+        <circle cx="220" cy="235" r="112" clip-path="url(#business-ring)"/>
+        <circle cx="220" cy="235" r="112" clip-path="url(#expertise-ring)"/>
+      </g>
+      <g clip-path="url(#business-ring)"><circle cx="220" cy="235" r="112" fill="#c8e5ff" clip-path="url(#expertise-ring)"/></g>
+      <g text-anchor="middle" fill="white" font-family="system-ui,sans-serif" font-size="18" font-weight="600">
+        <text x="115" y="92"><tspan x="115">Business and</tspan><tspan x="115" dy="23">strategic</tspan><tspan x="115" dy="23">knowledge</tspan></text>
+        <text x="324" y="116">AI expertise</text>
+        <text x="220" y="280">IT skills</text>
+        <text x="220" y="157" fill="#142548" font-weight="700"><tspan x="220">AI</tspan><tspan x="220" dy="20">leader</tspan></text>
+      </g>
+    </svg>
     <div class="actions">
       <a class="button" href="#work">Explore my work ↓</a>
       <a class="hero-link" href="https://www.linkedin.com/in/caleb-liu-6a361011a/">Connect on LinkedIn ↗</a>
