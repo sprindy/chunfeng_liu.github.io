@@ -130,6 +130,7 @@ layout: default
 
 <section class="blog-band" id="blog"><div class="wrap section">
   <h2>Perspective</h2>
+  <h3>Personal AI Infrastructure Research Insights</h3>
   <ul class="series">
     {% for series in site.data.series %}
       {% assign posts = site.posts | where: 'series', series.slug %}
@@ -139,6 +140,7 @@ layout: default
       {% else %}{{ series.name | escape }}{% endif %}</li>
     {% endfor %}
   </ul>
+  <h3>Industry Trends and Practitioner Insights</h3>
 </div></section>
 
 <section class="band" id="hobbies"><div class="wrap section split">
