@@ -102,6 +102,8 @@ h3 { font: 700 clamp(1.25rem, 2.5vw, 2rem)/1.16 var(--sans); letter-spacing: -.0
 .blog-band { background: var(--paper); }
 .series { list-style: none; padding: 0; }
 .series li { border-block-start: 1px solid var(--line); padding-block: 1rem; font-size: clamp(1.25rem, 3vw, 2.05rem); font-weight: 700; line-height: 1.2; letter-spacing: -.03em; }
+#blog .series { margin-block: 1.5rem 2rem; padding-inline-start: clamp(1rem, 3vw, 2rem); }
+#blog .series li { font-size: clamp(1rem, 1.5vw, 1.25rem); }
 .series li:last-child { border-block-end: 1px solid var(--line); }
 .series a { display: flex; justify-content: space-between; gap: .4rem; align-items: center; text-decoration: none; }
 .series a:hover, .series a span { color: var(--blue); }
