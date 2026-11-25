@@ -130,15 +130,24 @@ layout: default
 </section>
 
 <section class="blog-band" id="blog"><div class="wrap section">
-  <h2>Perspective</h2>
-  <form class="perspective-subscribe" action="https://api.follow.it/subscription-form/Sm1iNzI3R09vai9IeS9rcGJjbVIranJFR05yL0NMYXhEVFRKcXhSQ21HVCt6OXFOa043SzNZNzYwOWpnNVRxbnVIdm5sSWcvWCtZOHdINE5hS1lyYyt4UUpMMWJ5R216ei9yOUlWSlB4TGRoS3lPNFB0ZFZKZGI1RGRDczBBQW58OXJoa1R3ZEpxT0VRUU44NUU1Mml6RkpjVythbUFZZ2VSMjQ5WGgxc2UzUT0=/8" method="post">
-    <label for="perspective-email"><strong>Get new posts by email</strong></label>
+  <div class="perspective-heading" style="display:flex;align-items:center;justify-content:space-between;gap:.6rem;flex-wrap:wrap">
+    <h2 style="margin:0">Perspective</h2>
+    <button type="button" class="button" popovertarget="perspective-signup">Subscribe</button>
+  </div>
+  <div popover="auto" id="perspective-signup" role="dialog" aria-labelledby="perspective-signup-title" style="margin:auto;padding:1.4rem;width:min(25rem,calc(100vw - 2rem));box-sizing:border-box;border:1px solid #ccd5e3;border-radius:.75rem;box-shadow:0 .8rem 3rem #14243b33">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:.6rem">
+      <strong id="perspective-signup-title">Get new posts by email</strong>
+      <button type="button" aria-label="Close signup window" popovertarget="perspective-signup" popovertargetaction="hide" style="font-size:1.4rem;background:transparent;border:0;cursor:pointer">×</button>
+    </div>
+    <form class="perspective-subscribe" action="https://api.follow.it/subscription-form/Sm1iNzI3R09vai9IeS9rcGJjbVIranJFR05yL0NMYXhEVFRKcXhSQ21HVCt6OXFOa043SzNZNzYwOWpnNVRxbnVIdm5sSWcvWCtZOHdINE5hS1lyYyt4UUpMMWJ5R216ei9yOUlWSlB4TGRoS3lPNFB0ZFZKZGI1RGRDczBBQW58OXJoa1R3ZEpxT0VRUU44NUU1Mml6RkpjVythbUFZZ2VSMjQ5WGgxc2UzUT0=/8" method="post">
+    
     <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin:.6rem 0">
-      <input id="perspective-email" name="email" type="email" required autocomplete="email" placeholder="Email address" aria-describedby="subscribe-note" style="font:inherit;padding:.65rem;max-width:100%;box-sizing:border-box">
+      <input id="perspective-email" autofocus aria-label="Email address" name="email" type="email" required autocomplete="email" placeholder="Email address" aria-describedby="subscribe-note" style="font:inherit;padding:.65rem;max-width:100%;box-sizing:border-box">
       <button type="submit" class="button">Subscribe</button>
     </div>
     <small id="subscribe-note">follow.it uses your email address to send new posts. Check your inbox to confirm.</small>
   </form>
+  </div>
   <h3>Personal AI Infrastructure Research Insights</h3>
   <ul class="series">
     {% for series in site.data.series %}
