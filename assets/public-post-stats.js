@@ -110,7 +110,8 @@
     try {
       await request(engagement, { action: 'comment', name: fields.get('name'), body: fields.get('body') });
       form.reset();
-      status.textContent = 'Comment submitted for review.';
+      showComments(await request(readerEngagement));
+      status.textContent = 'Comment published.';
     } catch (error) {
       status.textContent = error.message;
     } finally {
