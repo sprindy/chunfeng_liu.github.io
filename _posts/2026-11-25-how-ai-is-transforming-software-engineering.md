@@ -3,7 +3,7 @@ title: How AI Is Transforming Software Engineering
 description: 20260822 Aumovio Agentic AI for RD
 series: technology-it
 ---
-AI is changing how software teams define tasks, build solutions, and verify results. Reflecting on the AUMOVIO presentation slides, I see five practical changes.
+AI is changing how software teams define tasks, build solutions, and verify results. Reflecting on the AUMOVIO presentation slides, I see six practical changes.
 
 ## 1. Engineers can delegate more implementation work
 
@@ -34,5 +34,11 @@ AI can propose changes, run checks, examine failures, and revise its work. Peopl
 ![Engineers defining problems, guiding implementation, and verifying results]({{ '/assets/images/ai-software-practices/3.webp' | relative_url }})
 
 Engineers define problems, guide implementation, and verify results. In embedded systems, that includes hardware behaviour, timing, memory, power consumption, and recovery from faults.
+
+## 6. Software tools are evolving for AI agents
+
+![Comparison of human-oriented tools and agent-ready interfaces, including APIs and MCP, project instructions, structured files, commands, and test results]({{ '/assets/images/ai-software-practices/6.webp' | relative_url }})
+
+As agents take on more software work, tools are evolving to provide discoverable capabilities, explicit instructions, structured documents, and actionable results. APIs, MCP, Markdown, and existing tools work together as these practices develop.
 
 *Based on selected AUMOVIO presentation slides from 22 August 2026. Illustrations generated with AI.*
