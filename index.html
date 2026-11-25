@@ -131,11 +131,14 @@ layout: default
 
 <section class="blog-band" id="blog"><div class="wrap section">
   <h2>Perspective</h2>
-  <details class="perspective-subscribe"><summary>Subscribe by email</summary>
-    <p>Get an email when I publish a new Perspective post. Copy the feed address below, then paste it into Blogtrottr’s Feed URL field, enter your email address and confirm your subscription by email.</p>
-    <label>Feed address <input type="url" readonly style="max-width:100%;width:30em;box-sizing:border-box" value="{{ '/perspective.xml' | absolute_url }}" onclick="this.select()"></label>
-    <p><a href="https://blogtrottr.com/" target="_blank" rel="noopener">Set up email notifications on Blogtrottr ↗</a></p>
-  </details>
+  <form class="perspective-subscribe" action="https://api.follow.it/subscription-form/Sm1iNzI3R09vai9IeS9rcGJjbVIranJFR05yL0NMYXhEVFRKcXhSQ21HVCt6OXFOa043SzNZNzYwOWpnNVRxbnVIdm5sSWcvWCtZOHdINE5hS1lyYyt4UUpMMWJ5R216ei9yOUlWSlB4TGRoS3lPNFB0ZFZKZGI1RGRDczBBQW58OXJoa1R3ZEpxT0VRUU44NUU1Mml6RkpjVythbUFZZ2VSMjQ5WGgxc2UzUT0=/8" method="post">
+    <label for="perspective-email"><strong>Get new posts by email</strong></label>
+    <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin:.6rem 0">
+      <input id="perspective-email" name="email" type="email" required autocomplete="email" placeholder="Email address" aria-describedby="subscribe-note" style="font:inherit;padding:.65rem;max-width:100%;box-sizing:border-box">
+      <button type="submit" class="button">Subscribe</button>
+    </div>
+    <small id="subscribe-note">follow.it uses your email address to send new posts. Check your inbox to confirm.</small>
+  </form>
   <h3>Personal AI Infrastructure Research Insights</h3>
   <ul class="series">
     {% for series in site.data.series %}
