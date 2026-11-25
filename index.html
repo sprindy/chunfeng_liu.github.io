@@ -131,8 +131,10 @@ layout: default
 
 <section class="blog-band" id="blog"><div class="wrap section">
   <h2>Perspective</h2>
-  <details class="perspective-subscribe"><summary>Subscribe to new posts</summary>
-    <p>Follow all five series in your RSS reader. Copy the <a href="{{ '/perspective.xml' | relative_url }}">Perspective feed link</a> and paste it into your reader’s subscription field.</p>
+  <details class="perspective-subscribe"><summary>Subscribe by email</summary>
+    <p>Get an email when I publish a new Perspective post. Copy the feed address below, then paste it into Blogtrottr’s Feed URL field, enter your email address and confirm your subscription by email.</p>
+    <label>Feed address <input type="url" readonly style="max-width:100%;width:30em;box-sizing:border-box" value="{{ '/perspective.xml' | absolute_url }}" onclick="this.select()"></label>
+    <p><a href="https://blogtrottr.com/" target="_blank" rel="noopener">Set up email notifications on Blogtrottr ↗</a></p>
   </details>
   <h3>Personal AI Infrastructure Research Insights</h3>
   <ul class="series">
