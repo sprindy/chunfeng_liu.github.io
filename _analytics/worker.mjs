@@ -218,11 +218,10 @@ async function postEngagement(request, env, url) {
     return json({ error: 'Use a name of up to 60 characters and a comment of 1–1,000 characters.' }, 400);
   }
   const created = Date.now();
-  const result = await env.DB.prepare(`INSERT INTO post_comments (id, path, name, body, created)
-    SELECT ?, ?, ?, ?, ? WHERE (SELECT COUNT(*) FROM post_comments WHERE approved = 0) < 250`)
+  await env.DB.prepare(`INSERT INTO post_comments (id, path, name, body, created, approved)
+    VALUES (?, ?, ?, ?, ?, 1)`)
     .bind(crypto.randomUUID(), path, name, body, created).run();
-  if (!result.meta.changes) return json({ error: 'The review queue is full. Try again later.' }, 429);
-  return json({ pending: true }, 202);
+  return json({ published: true }, 201);
 }
 
 async function moderateComments(request, env) {
