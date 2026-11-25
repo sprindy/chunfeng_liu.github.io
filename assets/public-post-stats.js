@@ -108,10 +108,10 @@
     submit.disabled = true;
     status.textContent = '';
     try {
-      await request(engagement, { action: 'comment', name: fields.get('name'), body: fields.get('body') });
+      const result = await request(engagement, { action: 'comment', name: fields.get('name'), body: fields.get('body') });
       form.reset();
       showComments(await request(readerEngagement));
-      status.textContent = 'Comment published.';
+      status.textContent = result.pending ? 'Comment submitted. Immediate publishing is awaiting a server update.' : 'Comment published.';
     } catch (error) {
       status.textContent = error.message;
     } finally {
