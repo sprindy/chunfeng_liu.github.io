@@ -2,89 +2,122 @@
 layout: default
 ---
 <section class="wrap hero" id="about" aria-labelledby="profile-title">
-  <div class="hero-inner">
-    <h2 id="profile-title">Profile</h2>
-    <p style="font-size:clamp(1.35rem, 2.4vw, 2rem);line-height:1.3;font-weight:600">I’m an aspiring AI leader focused on digital and AI transformation.</p>
-    <p><strong><a href="#blog">Business insights</a>.</strong> As a Nanyang MBA candidate at NTU, I learn from professors, alumni and guest speakers how to use business frameworks to evaluate strategic decisions.</p>
-    <p><strong><a href="#practice">AI practice</a>.</strong> I research AI infrastructure, learn from practitioners at AI events and apply what I learn through hands-on AI practice.</p>
-    <p><strong><a href="#work">IT skills</a>.</strong> I bring 15 years in the technology industry, spanning software engineering, hardware and team leadership across IoT, mobile and automotive systems.</p>
-    <svg viewBox="0 0 440 360" role="img" aria-labelledby="rings-title" style="display:block;width:100%;max-width:25rem;height:auto;margin:1.5rem auto 0">
-      <title id="rings-title">AI leader at the intersection of business and strategic knowledge, AI practice, and IT skills</title>
-      <defs>
-        <clipPath id="business-ring"><circle cx="152" cy="125" r="112"/></clipPath>
-        <clipPath id="expertise-ring"><circle cx="288" cy="125" r="112"/></clipPath>
-      </defs>
-      <g fill="#204ba8">
-        <circle cx="152" cy="125" r="112"/><circle cx="288" cy="125" r="112"/><circle cx="220" cy="235" r="112"/>
-      </g>
-      <g fill="#4385db">
-        <circle cx="288" cy="125" r="112" clip-path="url(#business-ring)"/>
-        <circle cx="220" cy="235" r="112" clip-path="url(#business-ring)"/>
-        <circle cx="220" cy="235" r="112" clip-path="url(#expertise-ring)"/>
-      </g>
-      <g clip-path="url(#business-ring)"><circle cx="220" cy="235" r="112" fill="#c8e5ff" clip-path="url(#expertise-ring)"/></g>
-      <g text-anchor="middle" fill="white" font-family="system-ui,sans-serif" font-size="18" font-weight="600">
-        <text x="115" y="92"><tspan x="115">Business and</tspan><tspan x="115" dy="23">strategic</tspan><tspan x="115" dy="23">knowledge</tspan></text>
-        <text x="324" y="116">AI practice</text>
-        <text x="220" y="280">IT skills</text>
-        <text x="220" y="157" fill="#142548" font-weight="700"><tspan x="220">AI</tspan><tspan x="220" dy="20">leader</tspan></text>
-      </g>
-    </svg>
+  <div class="hero-top">
+    <div class="hero-intro">
+      <p class="eyebrow">Profile</p>
+      <h1 id="profile-title">I’m an aspiring <span>AI leader</span> focused on digital and AI transformation.</h1>
+      <div class="actions">
+        <a class="button" href="#work">Professional experience</a>
+        <a class="hero-link" href="#blog">Read Perspective →</a>
+      </div>
+    </div>
+    <div class="hero-portrait" role="img" aria-label="Portrait of Chunfeng (Caleb) Liu"></div>
   </div>
-  <div class="hero-portrait" role="img" aria-label="Portrait of Chunfeng (Caleb) Liu"></div>
+
+  <div class="hero-pillars">
+    <div class="pillar-list">
+      <article class="pillar-item">
+        <h3><a href="#blog">Business insights →</a></h3>
+        <p>As a Nanyang MBA candidate at NTU, I learn from professors, alumni and guest speakers how to use business frameworks to evaluate strategic decisions.</p>
+      </article>
+      <article class="pillar-item">
+        <h3><a href="#practice">AI practice →</a></h3>
+        <p>I research AI infrastructure, learn from practitioners at AI events and apply what I learn through hands-on AI practice.</p>
+      </article>
+      <article class="pillar-item">
+        <h3><a href="#work">IT skills →</a></h3>
+        <p>I bring 15 years in the technology industry, spanning software engineering, hardware and team leadership across IoT, mobile and automotive systems.</p>
+      </article>
+    </div>
+
+    <div class="hero-diagram-card">
+      <svg class="hero-rings" viewBox="0 0 440 360" role="img" aria-labelledby="rings-title">
+        <title id="rings-title">AI leader at the intersection of business and strategic knowledge, AI practice, and IT skills</title>
+        <defs>
+          <clipPath id="business-ring"><circle cx="152" cy="125" r="112"/></clipPath>
+          <clipPath id="expertise-ring"><circle cx="288" cy="125" r="112"/></clipPath>
+        </defs>
+        <g fill="#204ba8">
+          <circle cx="152" cy="125" r="112"/><circle cx="288" cy="125" r="112"/><circle cx="220" cy="235" r="112"/>
+        </g>
+        <g fill="#4385db">
+          <circle cx="288" cy="125" r="112" clip-path="url(#business-ring)"/>
+          <circle cx="220" cy="235" r="112" clip-path="url(#business-ring)"/>
+          <circle cx="220" cy="235" r="112" clip-path="url(#expertise-ring)"/>
+        </g>
+        <g clip-path="url(#business-ring)"><circle cx="220" cy="235" r="112" fill="#c8e5ff" clip-path="url(#expertise-ring)"/></g>
+        <g text-anchor="middle" fill="#ffffff" font-family="DM Sans, system-ui, sans-serif" font-size="16" font-weight="600">
+          <text x="116" y="96"><tspan x="116">Business and</tspan><tspan x="116" dy="21">strategic</tspan><tspan x="116" dy="21">knowledge</tspan></text>
+          <text x="326" y="118">AI practice</text>
+          <text x="220" y="282">IT skills</text>
+          <text x="220" y="156" fill="#142548" font-size="17" font-weight="800"><tspan x="220">AI</tspan><tspan x="220" dy="20">leader</tspan></text>
+        </g>
+      </svg>
+    </div>
+  </div>
 </section>
 
 <section class="wrap section" id="work">
-  <h2>Professional Experience</h2>
-  <div class="work-list">
+  <div class="section-head">
+    <h2>Professional Experience</h2>
     <p class="case-links"><a href="https://sg.linkedin.com/in/caleb-sprindy-chunfeng-liu-6a361011a">Full work experience on LinkedIn ↗</a></p>
+  </div>
+  <div class="work-list">
     {% assign case_studies = site.work | sort: 'order' %}
     <article>
-      <div>
+      <div class="work-meta">
         <h3>TDK-InvenSense</h3>
-        <p>Shanghai, China</p>
+        <p class="work-location">Shanghai, China</p>
+        <div class="work-role">
+          <p class="role">System Software Manager</p>
+          <p class="work-date">Jan 2018 – Jun 2026</p>
+        </div>
       </div>
-      <div class="work-role">
-        <p class="role">System Software Manager</p>
-        <p class="work-date">Jan 2018 – Jun 2026</p>
+      <div class="work-body">
+        <p>Led sensor platform delivery across three regions. A modular Qualcomm SEE framework cut SKU onboarding time by 50%. CI and diagnostic routines reduced integration defects and debugging cycles by about 30%. Secured Qualcomm Tier 1 certification for three variants and Tier 2 certification for more than 20.</p>
+        <ul class="case-links">{% for study in case_studies %}{% if study.employer == 'TDK-InvenSense' %}<li><a href="{{ study.url | relative_url }}">{{ study.title | escape }} ↗</a></li>{% endif %}{% endfor %}</ul>
       </div>
-      <p>Led sensor platform delivery across three regions. A modular Qualcomm SEE framework cut SKU onboarding time by 50%. CI and diagnostic routines reduced integration defects and debugging cycles by about 30%. Secured Qualcomm Tier 1 certification for three variants and Tier 2 certification for more than 20.</p>
-      <ul class="case-links">{% for study in case_studies %}{% if study.employer == 'TDK-InvenSense' %}<li><a href="{{ study.url | relative_url }}">{{ study.title | escape }} ↗</a></li>{% endif %}{% endfor %}</ul>
     </article>
     <article>
-      <div>
+      <div class="work-meta">
         <h3>HTC</h3>
-        <p>Shanghai, China</p>
+        <p class="work-location">Shanghai, China</p>
+        <div class="work-role">
+          <p class="role">Senior Software Engineer</p>
+          <p class="work-date">Jul 2015 – Dec 2017</p>
+        </div>
       </div>
-      <div class="work-role">
-        <p class="role">Senior Software Engineer</p>
-        <p class="work-date">Jul 2015 – Dec 2017</p>
+      <div class="work-body">
+        <p>Developed sensing and low-power firmware for HTC VIVE VR on STM32 and FreeRTOS, and built diagnostics for Qualcomm and MediaTek smartphones.</p>
+        {% assign htc_study = case_studies | where: 'employer', 'HTC' | first %}
+        <ul class="case-links"><li><a href="{{ htc_study.url | relative_url }}">{{ htc_study.title | escape }} ↗</a></li></ul>
       </div>
-      <p>Developed sensing and low-power firmware for HTC VIVE VR on STM32 and FreeRTOS, and built diagnostics for Qualcomm and MediaTek smartphones.</p>
-      {% assign htc_study = case_studies | where: 'employer', 'HTC' | first %}
-      <ul class="case-links"><li><a href="{{ htc_study.url | relative_url }}">{{ htc_study.title | escape }} ↗</a></li></ul>
     </article>
     <article>
-      <div>
+      <div class="work-meta">
         <h3>ArcherMind Technology</h3>
-        <p>Shanghai, China</p>
+        <p class="work-location">Shanghai, China</p>
+        <div class="work-role">
+          <p class="role">Software Engineer</p>
+          <p class="work-date">Mar 2014 – May 2015</p>
+        </div>
       </div>
-      <div class="work-role">
-        <p class="role">Software Engineer</p>
-        <p class="work-date">Mar 2014 – May 2015</p>
+      <div class="work-body">
+        <p>Delivered five or more Android integrations for Intel automotive systems across telephony, audio, storage, and boot.</p>
       </div>
-      <p>Delivered five or more Android integrations for Intel automotive systems across telephony, audio, storage, and boot.</p>
     </article>
     <article>
-      <div>
+      <div class="work-meta">
         <h3>Jiangsu Radio Factory</h3>
-        <p>Nanjing, China</p>
+        <p class="work-location">Nanjing, China</p>
+        <div class="work-role">
+          <p class="role">Embedded Software Engineer</p>
+          <p class="work-date">Jun 2011 – Aug 2013</p>
+        </div>
       </div>
-      <div class="work-role">
-        <p class="role">Embedded Software Engineer</p>
-        <p class="work-date">Jun 2011 – Aug 2013</p>
+      <div class="work-body">
+        <p>Developed embedded drivers and C++ instrumentation applications on TI OMAP3530 and Windows CE.</p>
       </div>
-      <p>Developed embedded drivers and C++ instrumentation applications on TI OMAP3530 and Windows CE.</p>
     </article>
   </div>
 </section>
@@ -100,15 +133,15 @@ layout: default
 
 <section class="wrap section" id="education">
   <h2>Education</h2>
-  <div class="work-list">
+  <div class="education-grid">
     <article><p class="eyebrow">Jul 2026 – Jul 2027 (expected)</p><h3>Nanyang Technological University</h3><p class="role">Master of Business Administration · Nanyang Business School</p></article>
     <article><p class="eyebrow">Sep 2007 – Jun 2011</p><h3>Hebei GEO University</h3><p class="role">BSc, Electronic Information Engineering</p></article>
   </div>
 </section>
 
-<section class="wrap section" id="practice">
+<section class="wrap section section-divided" id="practice">
   <h2>AI Practice</h2>
-  <div class="skills-grid">
+  <div class="skills-grid practice-grid">
     <article>
       <h3>Independent AI Infrastructure Research</h3>
       <p>I track developments across the AI infrastructure stack and analyse their implications for enterprise adoption and business decisions.</p>
@@ -116,11 +149,11 @@ layout: default
     <article>
       <h3>RydeResolve | Tencent Cloud Hackathon Singapore 2026</h3>
       <p>I built a multi-agent prototype for ride-hailing disputes. Agents assessed trip evidence, rules governed refunds, and uncertain cases went to human review.</p>
-      <a href="https://github.com/sprindy/ryderesolve-vision5">View RydeResolve on GitHub ↗</a>
+      <p class="card-action"><a href="https://github.com/sprindy/ryderesolve-vision5">View RydeResolve on GitHub ↗</a></p>
     </article>
     <article>
       <h3>Certifications and Training</h3>
-      <ul>
+      <ul class="practice-list">
         <li>Microsoft Certified: Azure AI Fundamentals (AI-900)</li>
         <li>LinkedIn Learning: Model Context Protocol (MCP): Hands-On with Agentic AI</li>
         <li>LinkedIn Learning: Build with AI: Creating AI Agents with OpenAI’s Responses API</li>
@@ -130,39 +163,44 @@ layout: default
 </section>
 
 <section class="blog-band" id="blog"><div class="wrap section">
-  <div class="perspective-heading" style="display:flex;align-items:center;justify-content:space-between;gap:.6rem;flex-wrap:wrap">
-    <h2 style="margin:0">Perspective</h2>
+  <div class="section-head">
+    <h2>Perspective</h2>
     <button type="button" class="button" popovertarget="perspective-signup">Subscribe</button>
   </div>
-  <div popover="auto" id="perspective-signup" role="dialog" aria-labelledby="perspective-signup-title" style="margin:auto;padding:1.4rem;width:min(25rem,calc(100vw - 2rem));box-sizing:border-box;border:1px solid #ccd5e3;border-radius:.75rem;box-shadow:0 .8rem 3rem #14243b33">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:.6rem">
+  <div popover="auto" id="perspective-signup" class="subscribe-popover" role="dialog" aria-labelledby="perspective-signup-title">
+    <div class="subscribe-popover-head">
       <strong id="perspective-signup-title">Get new posts by email</strong>
-      <button type="button" aria-label="Close signup window" popovertarget="perspective-signup" popovertargetaction="hide" style="font-size:1.4rem;background:transparent;border:0;cursor:pointer">×</button>
+      <button type="button" class="popover-close" aria-label="Close signup window" popovertarget="perspective-signup" popovertargetaction="hide">×</button>
     </div>
     <form class="perspective-subscribe" action="https://api.follow.it/subscription-form/Sm1iNzI3R09vai9IeS9rcGJjbVIranJFR05yL0NMYXhEVFRKcXhSQ21HVCt6OXFOa043SzNZNzYwOWpnNVRxbnVIdm5sSWcvWCtZOHdINE5hS1lyYyt4UUpMMWJ5R216ei9yOUlWSlB4TGRoS3lPNFB0ZFZKZGI1RGRDczBBQW58OXJoa1R3ZEpxT0VRUU44NUU1Mml6RkpjVythbUFZZ2VSMjQ5WGgxc2UzUT0=/8" method="post">
-    
-    <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin:.6rem 0">
-      <input id="perspective-email" autofocus aria-label="Email address" name="email" type="email" required autocomplete="email" placeholder="Email address" aria-describedby="subscribe-note" style="font:inherit;padding:.65rem;max-width:100%;box-sizing:border-box">
-      <button type="submit" class="button">Subscribe</button>
-    </div>
-    <small id="subscribe-note">follow.it uses your email address to send new posts. Check your inbox to confirm.</small>
-  </form>
+      <div class="subscribe-row">
+        <input id="perspective-email" autofocus aria-label="Email address" name="email" type="email" required autocomplete="email" placeholder="Email address" aria-describedby="subscribe-note">
+        <button type="submit" class="button">Subscribe</button>
+      </div>
+      <small id="subscribe-note">follow.it uses your email address to send new posts. Check your inbox to confirm.</small>
+    </form>
   </div>
-  <h3>Personal AI Infrastructure Research Insights</h3>
-  <ul class="series">
-    {% for series in site.data.series %}
-      {% assign posts = site.posts | where: 'series', series.slug %}
-      <li>{% if posts.size > 0 %}
-        {% assign series_path = '/blog/' | append: series.slug | append: '/' %}
-        <a href="{{ series_path | relative_url }}">{{ series.name | escape }} <span aria-hidden="true">↗</span></a>
-      {% else %}{{ series.name | escape }}{% endif %}</li>
-    {% endfor %}
-  </ul>
-  <h3>Industry Trends and Practitioner Insights</h3>
-  <ul class="series">
-    <li><a href="{{ '/blog/technology-it/' | relative_url }}">Technology (IT) <span aria-hidden="true">↗</span></a></li>
-    <li><a href="{{ '/blog/finance-fintech/' | relative_url }}">Finance (Fintech) <span aria-hidden="true">↗</span></a></li>
-  </ul>
+  <div class="series-groups">
+    <div class="series-group">
+      <h3>Personal AI Infrastructure Research Insights</h3>
+      <ul class="series">
+        {% for series in site.data.series %}
+          {% assign posts = site.posts | where: 'series', series.slug %}
+          <li>{% if posts.size > 0 %}
+            {% assign series_path = '/blog/' | append: series.slug | append: '/' %}
+            <a href="{{ series_path | relative_url }}">{{ series.name | escape }} <span aria-hidden="true">↗</span></a>
+          {% else %}{{ series.name | escape }}{% endif %}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="series-group">
+      <h3>Industry Trends and Practitioner Insights</h3>
+      <ul class="series">
+        <li><a href="{{ '/blog/technology-it/' | relative_url }}">Technology (IT) <span aria-hidden="true">↗</span></a></li>
+        <li><a href="{{ '/blog/finance-fintech/' | relative_url }}">Finance (Fintech) <span aria-hidden="true">↗</span></a></li>
+      </ul>
+    </div>
+  </div>
 </div></section>
 
 <section class="band" id="hobbies"><div class="wrap section split">
